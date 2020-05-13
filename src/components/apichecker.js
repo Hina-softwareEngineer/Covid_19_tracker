@@ -1,26 +1,40 @@
-import React,{Component} from 'react';
+import React, { Component } from 'react';
 
 
-class ApiChecker extends Component{
+class ApiChecker extends Component {
     state = {
-        data: {}
+        data: {},
+        confirmed: 0,
+        deaths: 0,
+        recovered: 0
     }
 
-    componentDidMount(){
+    componentDidMount() {
         fetch('https://coronavirus-tracker-api.herokuapp.com/all')
-        .then(res => res.json())
-        .then(result => 
-            this.setState({ data: result })
-        )
-        .catch(err => console.log(err))
+            .then(res => res.json())
+            .then(result => {
+                let res = result["latest"]
+                this.setState({
+                    data: result,
+                    confirmed: res["confirmed"],
+                    deaths: res["deaths"],
+                    recovered: res["recovered"]
+                })
+            })
+            .catch(err => console.log(err))
     }
 
-    render(){
-        let res= this.state.data;
-        console.log(res.latest, res.last_updated, res);
+    render() {
+        let data = this.state;
+        console.log(data.data)
+
         return (
             <div>
-                <h1>Heina</h1>
+                <h1>Hina</h1>
+                <h1>Confirmed : {data.confirmed}</h1>
+                <h1>Deaths : {data.deaths}</h1>
+                <h1>Recovered : {data.recovered}</h1>
+
             </div>
         );
     }
