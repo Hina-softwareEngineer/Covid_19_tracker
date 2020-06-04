@@ -4,19 +4,14 @@ import * as am4charts from "@amcharts/amcharts4/charts";
 import am4themes_animated from "@amcharts/amcharts4/themes/animated";
 
 am4core.useTheme(am4themes_animated);
-// import * as am4maps from "@amcharts/amcharts4/maps";
-// import am4geodata_worldLow from "@amcharts/amcharts4-geodata/worldLow";
-
-
-am4core.useTheme(am4themes_animated);
 
 class ApiChecker extends Component {
     state = {
         data: {},
         history: {},
+        history2: {},
         confirmed: 0,
         deaths: 0,
-        mapChart: null,
         recovered: 0
     }
 
@@ -28,18 +23,88 @@ class ApiChecker extends Component {
                 this.setState({
                     data: result,
                     history: result["confirmed"]["locations"][0]["history"],
-                    mapChart: result["confirmed"]["locations"],
+                    history2: result["recovered"]["locations"][0]["history"],
                     confirmed: res["confirmed"],
                     deaths: res["deaths"],
                     recovered: res["recovered"]
                 });
+                console.log('in fetch', this.state);
+                am4core.useTheme(am4themes_animated);
+
+                let chart = am4core.create("chartdiv", am4charts.XYChart);
+
+                chart.paddingRight = 20;
+
+
+
+
+
+
+                let histories = this.state.history;
+                console.log("historyies", histories);
+
+                let chart_data = [];
+                var i = 0;
+
+                for (var dates in histories) {
+                    chart_data.push({ date: new Date(dates), name: "names" + i, value: histories[dates], linecolor: "green" });
+                    i = i + 1;
+                }
+                console.log('history data: ', chart_data);
+
+
+                chart.data = chart_data;
+
+
+
+                let dateAxis = chart.xAxes.push(new am4charts.DateAxis());
+
+                dateAxis.renderer.minGridDistance = 50;
+                let valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+
+                valueAxis.renderer.minWidth = 35;
+
+                let series = chart.series.push(new am4charts.LineSeries());
+                series.dataFields.dateX = "date";
+                series.dataFields.valueY = "value";
+
+                series.tooltipText = "{valueY.value} cases";
+                chart.cursor = new am4charts.XYCursor();
+
+                series.strokeWidth = 2;
+                series.fill = "red";
+                chart.colors = "red";
+
+                chart.stroke = am4core.color("green");
+                series.stroke = am4core.color("red");
+
+                series.propertyFields.fill = "color";
+
+                series.propertyFields.stroke = "lineColor";
+                series.propertyFields.fill = "lineColor";
+
+
+                // var series2 = chart.series.push(new am4charts.LineSeries());
+                // series2.dataFields.valueY = "value2";
+                // series2.dataFields.dateX = "date";
+                // series2.strokeWidth = 2;
+                // series2.strokeDasharray = "3,4";
+                // series2.stroke = series.stroke;
+
+
+                this.chart = chart;
             })
+    }
+    componentWillUnmount() {
+        if (this.chart) {
+            this.chart.dispose();
+        }
     }
 
     render() {
         let results = this.state;
         console.log(results.data)
-
+        console.log(results.history)
 
         return (
             <div>
