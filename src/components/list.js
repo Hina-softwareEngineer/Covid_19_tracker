@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import "./list.css";
 class List extends Component {
 
     state = {
@@ -8,6 +8,7 @@ class List extends Component {
         history2: {},
         history3: {},
         confirmed: 0,
+        arr1: [],
         deaths: 0,
         recovered: 0
     }
@@ -24,7 +25,7 @@ class List extends Component {
                     history3: result["deaths"]["locations"],
                     confirmed: res["confirmed"],
                     deaths: res["deaths"],
-                    recovered: res["recovered"]
+                    recovered: res["recovered"],
                 });
 
 
@@ -51,7 +52,7 @@ class List extends Component {
                     }
                 }
 
-                console.log(arr);
+                // console.log("array1", arr);
 
                 for (var i = 0; i < histories2.length; i++) {
                     if (histories2[i].latest) {
@@ -69,18 +70,39 @@ class List extends Component {
                     }
                 }
 
-                console.log(arr);
+                let names = Object.keys(arr);
+                let lastArray = [];
+                for (var i = 0; i < names.length; i++) {
+                    lastArray.push({ country: names[i], values: arr[names[i]] });
+                }
+                this.setState({
+                    arr1: lastArray,
+                });
+
+                console.log(lastArray);
+                // console.log(arr);
             })
     }
 
     render() {
+        // console.log(this.state.arr1);
+        let angle = this.state.arr1;
         return (
-
-
-            < div >
-                <div>hello</div>
-                <div>bye bye</div>
-            </div >
+            <div>
+                {
+                    angle.map((country, index) => {
+                        return (
+                            <div key={index} className="box">
+                                <p>Name : {country.country}</p>
+                                <p>code : {country.values.country_code}</p>
+                                <p>Confirmed : {country.values.confirmed}</p>
+                                <p>Deaths : {country.values.deaths}</p>
+                                <p>Recovered : {country.values.recovered}</p>
+                            </div>
+                        );
+                    })
+                }
+            </div>
         );
     }
 }
