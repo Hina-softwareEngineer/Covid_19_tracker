@@ -1,0 +1,80 @@
+
+
+h6{
+    font-size: 0.7rem;
+    margin: 0;
+}
+
+.countriesList{
+    margin: 20px;
+    width: 550px;
+    background-color: #526974;
+    border-radius: 25px;
+    padding: 10px;
+    font-family: 'Open Sans', sans-serif;
+    color : white;
+    text-align: center; 
+    letter-spacing: 2px;  
+    height: 600px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+.countryData{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    text-align: left;
+    padding-bottom: 8px;
+    margin: 0px 30px;
+    border-bottom: 1px solid lightgray;
+}
+
+h3{
+    margin-bottom: 8px;
+}
+
+.names > h6 > span:first-child{
+    color: #08ffff;
+    text-shadow: 2px 2px 4px rgb(2, 48, 83);
+}
+
+.names > h6 > span:last-child{
+    color:  #c00808;
+    text-shadow: 2px 2px 4px #f44336;
+}
+
+.codes{
+    text-align: right;
+    align-self: flex-end;
+}
+
+
+.codes > h6:last-child{
+    margin-top: 10px;
+    color: #08ff10;
+    text-shadow: #1B5E20;  
+}
+
+/* width */
+.countriesList::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+.countriesList::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 8px rgba(0,0,0,0.1);
+    border-radius: 10px;
+  }
+   
+  /* Handle */
+.countriesList::-webkit-scrollbar-thumb {
+    background: #03a9f4; 
+    border-radius: 10px;
+  }
+  
+  /* Handle on hover */
+.countriesList::-webkit-scrollbar-thumb:hover {
+    background: #0395da; 
+  }

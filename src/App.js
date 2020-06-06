@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import './App.css';
 import Statistics from './components/statistics/statistics.component'
-import ApiChecker from './components/apichecker';
-import World from './components/world';
-import Gauge from './components/gauge';
-import List from "./components/list";
+import PieChart from './components/PieChart/piechart.components';
 import WorldMap from "./components/worldMap/worldmap.component";
-import { truncateWithEllipsis } from '@amcharts/amcharts4/.internal/core/utils/Utils';
+import WorldList from './components/WorldList/worldlist.component';
+
 
 class App extends Component {
 
@@ -65,6 +63,18 @@ class App extends Component {
         <div className="map">
           {
             states.data ? <WorldMap data={states.data} /> : null
+          }
+
+        </div>
+
+        <div className="container">
+
+          {
+            states.data ? <PieChart data={states.data.confirmed} /> : null
+          }
+
+          {
+            states.data ? <WorldList data={states.data} /> : null
           }
 
         </div>

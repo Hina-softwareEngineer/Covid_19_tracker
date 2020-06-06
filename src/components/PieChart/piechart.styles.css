@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather&family=Open+Sans&family=Playfair+Display&display=swap');
+
+.piechart{
+    margin: 20px;
+    background-color: #526974;
+    border-radius: 25px;
+    padding: 10px;
+    font-family: 'Open Sans', sans-serif;
+    color : white;
+    text-align: center; 
+    text-shadow: 2px 2px 4px #000000;
+    letter-spacing: 2px;
+}
+  

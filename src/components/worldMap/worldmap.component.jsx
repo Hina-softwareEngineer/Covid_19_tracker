@@ -3,7 +3,7 @@ import "./worldmap.styles.css";
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4maps from "@amcharts/amcharts4/maps";
 import am4geodata_worldLow from "@amcharts/amcharts4-geodata/worldLow";
-import am4themes_animated from "@amcharts/amcharts4/themes/animated";
+
 
 
 class Statistics extends Component {
@@ -16,14 +16,9 @@ class Statistics extends Component {
     chartMaker(color, border) {
         let chart = am4core.create("chartdiv", am4maps.MapChart);
 
-        // let title = chart.titles.create();
-        // title.text = "CoronaVirus Tracker";
-        // title.textAlign = "middle";
 
-
-        // let worldMap = this.props.data.locations;
         let worldMap = this.state.worldmap;
-        // console.log("worldmap", worldMap);
+
         let mapData = [];
 
         worldMap.forEach(country => {
