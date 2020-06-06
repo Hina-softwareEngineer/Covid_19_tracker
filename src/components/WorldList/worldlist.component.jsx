@@ -5,48 +5,50 @@ class WorldList extends Component {
 
     state = {
         data: this.props.data,
-        arr1: null
+        cleanedData: [],
+        search: "",
     }
 
     displayList() {
-        let histories1 = this.state.data.confirmed.locations;
-        let histories2 = this.state.data.recovered.locations;
-        let histories3 = this.state.data.deaths.locations;
+        let states = this.state.data;
+        let historyConfirmed = states.confirmed.locations;
+        let historyRecovered = states.recovered.locations;
+        let historyDeath = states.deaths.locations;
 
 
         let arr = {};
 
-        for (var i = 0; i < histories1.length; i++) {
-            if (!arr[histories1[i].country]) {
+        for (var i = 0; i < historyConfirmed.length; i++) {
+            if (!arr[historyConfirmed[i].country]) {
 
-                arr[histories1[i].country] = {
-                    country_code: histories1[i].country_code,
-                    province: histories1[i].province,
-                    confirmed: histories1[i].latest,
-                    deaths: histories3[i].latest,
+                arr[historyConfirmed[i].country] = {
+                    country_code: historyConfirmed[i].country_code,
+                    province: historyConfirmed[i].province,
+                    confirmed: historyConfirmed[i].latest,
+                    deaths: historyDeath[i].latest,
                 };
             }
             else {
-                arr[histories1[i].country].confirmed += histories1[i].latest;
-                arr[histories1[i].country].deaths += histories3[i].latest;
+                arr[historyConfirmed[i].country].confirmed += historyConfirmed[i].latest;
+                arr[historyConfirmed[i].country].deaths += historyDeath[i].latest;
             }
         }
 
 
 
-        for (var i = 0; i < histories2.length; i++) {
-            if (histories2[i].latest) {
+        for (var i = 0; i < historyRecovered.length; i++) {
+            if (historyRecovered[i].latest) {
 
-                if (arr[histories2[i].country].recovered) {
-                    arr[histories2[i].country].recovered += histories2[i].latest;
+                if (arr[historyRecovered[i].country].recovered) {
+                    arr[historyRecovered[i].country].recovered += historyRecovered[i].latest;
                 }
                 else {
-                    arr[histories2[i].country] = { ...arr[histories2[i].country], recovered: histories2[i].latest };
+                    arr[historyRecovered[i].country] = { ...arr[historyRecovered[i].country], recovered: historyRecovered[i].latest };
 
                 }
             }
             else {
-                arr[histories2[i].country] = { ...arr[histories2[i].country], recovered: 0 };
+                arr[historyRecovered[i].country] = { ...arr[historyRecovered[i].country], recovered: 0 };
             }
         }
 
@@ -56,36 +58,98 @@ class WorldList extends Component {
             lastArray.push({ country: names[i], values: arr[names[i]] });
         }
         this.setState({
-            arr1: lastArray,
+            cleanedData: lastArray,
         });
 
-        console.log("last array", lastArray);
     }
 
     componentDidMount() {
         this.displayList();
     }
 
+    SearchInput(e) {
+        this.setState({ search: e.target.value }, () => {
+        });
+    }
+
+    sortByCases = (e) => {
+        let options = e.target.value;
+        var sortedData;
+
+        if (options == "confirmed") {
+            sortedData = [...this.state.cleanedData].sort((a, b) =>
+                (a.values.confirmed - b.values.confirmed)
+            ).reverse();
+        }
+        else if (options == "deaths") {
+            sortedData = [...this.state.cleanedData].sort((a, b) =>
+                (a.values.deaths - b.values.deaths)
+            ).reverse();
+        }
+        else if (options == "recovered") {
+            sortedData = [...this.state.cleanedData].sort((a, b) =>
+                (a.values.recovered - b.values.recovered)
+            ).reverse();
+        }
+
+        else {
+            sortedData = [...this.state.cleanedData].sort((a, b) => {
+                if (a.country < b.country) return 1;
+                if (a.country > b.country) return -1;
+                return 0;
+            }
+            ).reverse();
+        }
+
+        this.setState({ cleanedData: sortedData });
+
+    }
+
+
     render() {
+
+        const { cleanedData, search } = this.state;
+        const SearchResult = cleanedData.filter(country =>
+            country.country.toLowerCase().includes(search.toLowerCase()));
+
         return (
             <div className="countriesList">
+                <h1>All Affected Countries Statistics</h1>
+                <div className="inputSelect">
+                    <input
+                        onChange={this.SearchInput.bind(this)}
+                        type="text" placeholder="Search by Country Name"
+                        value={search}
+                        name="country"
+                    />
+
+                    <select onChange={this.sortByCases} name="options">
+                        <option value="default">Sort By </option>
+                        <option value="confirmed">Confirmed Cases</option>
+                        <option value="deaths">Deaths Cases</option>
+                        <option value="recovered">Recovered Cases</option>
+                        <option value="alphabetically">Alphabets (A-Z)</option>
+                    </select>
+                </div>
                 {
-                    this.state.arr1 &&
-                    this.state.arr1.map((country, index) => {
+                    SearchResult &&
+                    SearchResult.map((country, index) => {
                         return (
+
                             <div key={index} id="country" className="countryData">
+
                                 <div className="names">
                                     <h3>{country.country}</h3>
                                     <h6>
-                                        <span>{country.values.confirmed} Confirmed
+                                        <span>{country.values.confirmed.toLocaleString(navigator.language, { minimumFractionDigits: 0 })} Confirmed
                                         </span>
                                     &nbsp;&&nbsp;
-                                <span>{country.values.deaths} Deaths</span></h6>
+                                <span>{country.values.deaths.toLocaleString(navigator.language, { minimumFractionDigits: 0 })} Deaths</span></h6>
                                 </div>
 
                                 <div className="codes">
                                     <h6>{country.values.country_code}</h6>
-                                    <h6>{country.values.recovered} Recovered</h6>
+                                    <h6>{country.values.recovered.toLocaleString(navigator.language, { minimumFractionDigits: 0 })} Recovered</h6>
 
                                 </div>
 

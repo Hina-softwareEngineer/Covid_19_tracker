@@ -6,7 +6,11 @@ const Statistics = (props) => (
         props.color ? props.color : null
         }`} >
         <h3>{props.name} Cases</h3>
-        <h1>{props.stats.latest}</h1>
+        <h1>{
+
+            props.stats.latest ?
+                props.stats.latest.toLocaleString(navigator.language, { minimumFractionDigits: 0 }) :
+                null}</h1>
         <p>Last Updated : {
             (props.stats.last_updated ? new Date(props.stats.last_updated)
                 .toTimeString().match(/\d+:\d+:\d+/)[0] : "Loading...")

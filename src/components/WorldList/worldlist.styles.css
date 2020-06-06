@@ -1,9 +1,53 @@
 
 
+h1{
+    font-size: 1.5rem;
+    text-shadow: 2px 2px 4px #000000;
+}
+
 h6{
     font-size: 0.7rem;
     margin: 0;
 }
+
+.inputSelect{
+    display: flex;
+    justify-content: space-between;
+    padding: 2px 25px;
+    padding-top: 10px;
+    position: static;
+}
+
+input{
+    border : 1px solid #5e7885;
+    background-color: #607D8B;
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: left;
+    font-size: 16px;
+}
+
+input:focus{
+    background-color: #78909C;
+    border: none;
+    outline: none;
+}
+
+
+input::placeholder{
+    color: lightgray;
+}
+
+select{
+    padding: 6px;
+    border : 1px solid #5e7885;
+    border-radius: 5px;
+    color: lightgray;
+    font-size: 14px;
+    background-color: #607D8B;
+}
+
 
 .countriesList{
     margin: 20px;
@@ -18,6 +62,9 @@ h6{
     height: 600px;
     overflow-x: hidden;
     overflow-y: scroll;
+    /* width: 100%; */
+    flex-grow: 1;
+    scroll-behavior: smooth;
 }
 
 .countryData{
@@ -41,7 +88,7 @@ h3{
 }
 
 .names > h6 > span:last-child{
-    color:  #c00808;
+    color:  #fd9b9b;
     text-shadow: 2px 2px 4px #f44336;
 }
 
@@ -54,7 +101,7 @@ h3{
 .codes > h6:last-child{
     margin-top: 10px;
     color: #08ff10;
-    text-shadow: #1B5E20;  
+    text-shadow:2px 2px #1B5E20;  
 }
 
 /* width */
