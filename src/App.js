@@ -6,6 +6,7 @@ import World from './components/world';
 import Gauge from './components/gauge';
 import List from "./components/list";
 import WorldMap from "./components/worldMap/worldmap.component";
+import { truncateWithEllipsis } from '@amcharts/amcharts4/.internal/core/utils/Utils';
 
 class App extends Component {
 
@@ -14,13 +15,14 @@ class App extends Component {
 
     this.state = {
 
-      data: {},
+      data: null,
       historyConfirmed: {},
       historyRecovered: {},
       historyDeaths: {},
       confirmed: 0,
       deaths: 0,
-      recovered: 0
+      recovered: 0,
+
 
     };
   }
@@ -37,7 +39,7 @@ class App extends Component {
           historyDeaths: result["deaths"]["locations"][0]["history"],
           confirmed: result["confirmed"],
           deaths: result["deaths"],
-          recovered: result["recovered"]
+          recovered: result["recovered"],
         })
         console.log(this.state.data);
       })
@@ -50,7 +52,7 @@ class App extends Component {
   render() {
 
     let states = this.state;
-    console.log(states.confirmed);
+    console.log(states.confirmed, states.deaths, states.recovered);
 
     return (
       <div className="App">
@@ -60,9 +62,9 @@ class App extends Component {
           <Statistics stats={states.recovered} name="Recovered" color="green" />
         </div>
 
-        <div>
+        <div className="map">
           {
-            states.confirmed ? <WorldMap data={states.confirmed} /> : null
+            states.data ? <WorldMap data={states.data} /> : null
           }
 
         </div>

@@ -2,6 +2,7 @@
   "name": "covid-19",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:4000",
   "dependencies": {
     "@amcharts/amcharts4": "^4.9.24",
     "@amcharts/amcharts4-geodata": "^4.1.15",

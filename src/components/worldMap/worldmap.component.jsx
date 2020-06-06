@@ -8,14 +8,22 @@ import am4themes_animated from "@amcharts/amcharts4/themes/animated";
 
 class Statistics extends Component {
 
-    componentDidMount() {
+    state = {
+        data: this.props.data,
+        worldmap: this.props.data.confirmed.locations
+    }
+
+    chartMaker(color, border) {
         let chart = am4core.create("chartdiv", am4maps.MapChart);
 
-        let title = chart.titles.create();
-        title.text = "CoronaVirus";
-        title.textAlign = "middle";
+        // let title = chart.titles.create();
+        // title.text = "CoronaVirus Tracker";
+        // title.textAlign = "middle";
 
-        let worldMap = this.props.data.locations;
+
+        // let worldMap = this.props.data.locations;
+        let worldMap = this.state.worldmap;
+        // console.log("worldmap", worldMap);
         let mapData = [];
 
         worldMap.forEach(country => {
@@ -23,7 +31,7 @@ class Statistics extends Component {
                 id: country.country_code,
                 name: country.country,
                 value: country.latest,
-                color: "purple"
+                color: color
             });
         });
 
@@ -39,15 +47,16 @@ class Statistics extends Component {
         polygonSeries.useGeodata = true;
         polygonSeries.nonScalingStroke = true;
         polygonSeries.strokeWidth = 0.5;
-        polygonSeries.stroke = am4core.color("red");
         polygonSeries.calculateVisualCenter = true;
 
         let polygonTemplate = polygonSeries.mapPolygons.template;
-        polygonTemplate.fill = am4core.color("#4b636e");
+        polygonTemplate.fill = am4core.color("#29434e");
+        polygonTemplate.tooltipText = "{name}";
+        polygonTemplate.stroke = am4core.color("#546e7a");
 
         // Create hover state and set alternative fill color
         var hs = polygonTemplate.states.create("hover");
-        hs.properties.fill = am4core.color("#62757f");
+        hs.properties.fill = am4core.color("#1c313a");
 
         let imageSeries = chart.series.push(new am4maps.MapImageSeries());
         imageSeries.data = mapData;
@@ -60,6 +69,7 @@ class Statistics extends Component {
         circle.fillOpacity = 0.7;
         circle.propertyFields.fill = "color";
         circle.tooltipText = "{name}: [bold]{value}[/]";
+        circle.stroke = am4core.color(border);
 
 
         imageSeries.heatRules.push({
@@ -88,9 +98,44 @@ class Statistics extends Component {
 
     }
 
+    componentDidMount() {
+        this.chartMaker("#03a9f4");
+    }
+
     render() {
+
         return (
-            <div id="chartdiv" style={{ width: "100%", height: "500px" }}></div>
+            <div>
+                <div className="header">
+                    <h1>World Affected Nations by Covid-19</h1>
+                </div>
+                <div className="buttons">
+                    <button className="button blueButton" onClick={() => {
+                        this.setState({
+                            worldmap: this.state.data.confirmed.locations
+                        }, () => { this.chartMaker("#03a9f4", "#000051"); });
+
+                    }}>Confirmed</button>
+                    <button className="button redButton" onClick={() => {
+                        this.setState({
+                            worldmap: this.state.data.deaths.locations
+                        }, () => {
+
+                            this.chartMaker("#f44336", "#ba000d");
+                        });
+
+                    }}>Deaths</button>
+                    <button className="button greenButton" onClick={() => {
+                        this.setState({
+                            worldmap: this.state.data.recovered.locations
+                        }, () => {
+                            this.chartMaker("#4caf50", "#005005");
+                        })
+                    }}>Recovered</button>
+                </div>
+
+                <div id="chartdiv" ></div>
+            </div>
         );
 
     }

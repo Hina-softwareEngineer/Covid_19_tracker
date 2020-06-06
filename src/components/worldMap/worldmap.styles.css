@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather&family=Open+Sans&family=Playfair+Display&display=swap');
+
+.header{
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Open Sans', sans-serif;
+    letter-spacing: 2px;
+}
+
+.header > h1{
+    color : white;
+    text-align: center; 
+    padding: 0px 20px; 
+    text-shadow: 2px 2px 4px #000000;
+}
+
+.buttons{
+    display: block;
+    padding: 0 20px;
+  }
+  
+  .button{
+    padding: 8px 15px;
+    margin: 5px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bolder;
+    color: white;
+    cursor: pointer;
+  }
+  
+.blueButton{
+    background-color: rgba(3, 169, 244, 0.7);
+    border: 1px solid #01579B;
+}
+
+.redButton{
+    background-color: rgba(244, 67, 54, 0.7);
+    border : 1px solid #ba000d;
+}
+
+.greenButton{
+    background-color: rgba(76, 175, 80, 0.7);
+    border : 1px solid #1B5E20;
+}
+
+
+.blueButton:hover{
+    background-color: rgba(3, 169, 244, 1);
+    box-shadow: 1px 1px 3px #01579B;
+}
+
+.redButton:hover{
+    background-color: rgba(244, 67, 54, 1);
+    box-shadow: 1px 1px 3px #ba000d;
+}
+
+.greenButton:hover{
+    background-color: rgba(76, 175, 80, 1);
+    box-shadow: 1px 1px 3px #1B5E20;
+}
+
+#chartdiv{
+    padding: 20px;
+    width: 100%;
+    height: 500px;
+}
