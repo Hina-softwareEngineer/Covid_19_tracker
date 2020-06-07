@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './worldlist.styles.css';
+import { withRouter } from 'react-router-dom';
 
 class WorldList extends Component {
 
@@ -109,6 +110,8 @@ class WorldList extends Component {
     render() {
 
         const { cleanedData, search } = this.state;
+        let { match, history } = this.props;
+        console.log("math, history", match, history);
         const SearchResult = cleanedData.filter(country =>
             country.country.toLowerCase().includes(search.toLowerCase()));
 
@@ -139,7 +142,7 @@ class WorldList extends Component {
                             <div key={index} id="country" className="countryData">
 
                                 <div className="names">
-                                    <h3>{country.country}</h3>
+                                    <h3 onClick={() => history.push(`${match.path}country/${country.country}`)}>{country.country}</h3>
                                     <h6>
                                         <span>{country.values.confirmed.toLocaleString(navigator.language, { minimumFractionDigits: 0 })} Confirmed
                                         </span>
@@ -163,4 +166,4 @@ class WorldList extends Component {
 
 }
 
-export default WorldList;
+export default withRouter(WorldList);

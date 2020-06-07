@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
-import Statistics from './components/statistics/statistics.component'
-import PieChart from './components/PieChart/piechart.components';
-import WorldMap from "./components/worldMap/worldmap.component";
-import WorldList from './components/WorldList/worldlist.component';
 
+import { Switch, Route, Redirect } from 'react-router-dom';
+import Country from "./components/countryData/country.component";
+import Home from './pages/home.component';
 
 class App extends Component {
 
@@ -54,30 +53,16 @@ class App extends Component {
 
     return (
       <div className="App">
-        <div className="boxes">
-          <Statistics stats={states.confirmed} name="Confirmed" color="blue" />
-          <Statistics stats={states.deaths} name="Deaths" color="red" />
-          <Statistics stats={states.recovered} name="Recovered" color="green" />
-        </div>
 
-        <div className="map">
-          {
-            states.data ? <WorldMap data={states.data} /> : null
-          }
+        {
+          states.data ?
+            <Switch>
+              <Route exact path='/' render={() => <Home someProp={states.data} />} />
+              <Route path='/country/:countryId' render={() => <Country />} />} />
 
-        </div>
+        </Switch> : "Loading........"
+        }
 
-        <div className="container">
-
-          {
-            states.data ? <PieChart data={states.data.confirmed} /> : null
-          }
-
-          {
-            states.data ? <WorldList data={states.data} /> : null
-          }
-
-        </div>
       </div>
     );
   }
