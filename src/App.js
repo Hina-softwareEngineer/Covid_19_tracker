@@ -1,73 +1,64 @@
 import React, { Component } from 'react';
 import './App.css';
-
+import LoaderHome from './components/Loader/loader.component';
+import { connect } from 'react-redux';
+import { fetchDataAsync } from '../src/components/redux/actions/actions';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import Country from "./components/countryData/country.component";
 import Home from './pages/home.component';
+
 
 class App extends Component {
 
   constructor() {
     super();
 
-    this.state = {
-
-      data: null,
-      historyConfirmed: {},
-      historyRecovered: {},
-      historyDeaths: {},
-      confirmed: 0,
-      deaths: 0,
-      recovered: 0,
-
-
-    };
+    this.shouldComponentRender = this.shouldComponentRender.bind(this);
   }
 
   componentDidMount() {
-    fetch('https://coronavirus-tracker-api.herokuapp.com/all')
-      .then(res => res.json())
-      .then(result => {
-
-        this.setState({
-          data: result,
-          historyConfirmed: result["confirmed"]["locations"][0]["history"],
-          historyRecovered: result["recovered"]["locations"][0]["history"],
-          historyDeaths: result["deaths"]["locations"][0]["history"],
-          confirmed: result["confirmed"],
-          deaths: result["deaths"],
-          recovered: result["recovered"],
-        })
-        console.log(this.state.data);
-      })
-      .catch((err) => (alert("Error in making Request : ", err)));
-
+    this.props.fetchData();
   }
 
 
+  shouldComponentRender() {
+    const { isFetching } = this.props;
+    if (isFetching === false) {
+      return false;
+    }
+    return true;
+  }
 
   render() {
 
-    let states = this.state;
-
+    if (!this.shouldComponentRender()) {
+      return <LoaderHome />;
+    }
 
     return (
+
       <div className="App">
-
-        {
-          states.data ?
-            <Switch>
-              <Route exact path='/' render={() => <Home someProp={states.data} />} />
-              <Route path='/country/:countryId' render={() => <Country country={states.data} />} />} />
-
-        </Switch> : "Loading........"
-        }
-
+        <Switch>
+          <Route path='/country/:countryId' component={Country} />} />
+              <Route exact path='/' component={Home} />
+          <Route path="*" render={() => <Redirect to="/" />} />
+        </Switch>
       </div>
+
     );
   }
 
 }
 
+const mapStateToProps = state => ({
+  isFetching: state.country.isFetching
+})
 
-export default App;
+const mapDispatchToProps = dispatch => ({
+  fetchData: () => dispatch(fetchDataAsync()),
+});
+
+
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

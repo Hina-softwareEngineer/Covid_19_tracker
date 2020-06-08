@@ -199,7 +199,6 @@ class Country extends Component {
                 }
 
 
-
                 <div id="chartdiv" style={{ width: "100%", height: "500px" }}></div>
                 {/* <div className="map">
                     {
@@ -219,6 +218,8 @@ class Country extends Component {
                     } 
 
                 </div> */}
+
+                
             </div>
         );
     }
