@@ -111,7 +111,7 @@ class WorldList extends Component {
 
         const { cleanedData, search } = this.state;
         let { match, history } = this.props;
-        console.log("math, history", match, history);
+
         const SearchResult = cleanedData.filter(country =>
             country.country.toLowerCase().includes(search.toLowerCase()));
 

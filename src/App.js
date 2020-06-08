@@ -49,7 +49,7 @@ class App extends Component {
   render() {
 
     let states = this.state;
-    console.log(states.confirmed, states.deaths, states.recovered);
+
 
     return (
       <div className="App">
@@ -58,7 +58,7 @@ class App extends Component {
           states.data ?
             <Switch>
               <Route exact path='/' render={() => <Home someProp={states.data} />} />
-              <Route path='/country/:countryId' render={() => <Country />} />} />
+              <Route path='/country/:countryId' render={() => <Country country={states.data} />} />} />
 
         </Switch> : "Loading........"
         }
