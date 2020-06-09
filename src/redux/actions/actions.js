@@ -34,6 +34,6 @@ export const fetchDataAsync = () => {
                     dispatch(fetchDataSuccess(res.data))
             )
             .catch(err =>
-                dispatch(fetchDataFailure()))
+                dispatch(fetchDataFailure(err)))
     }
 }

@@ -1,12 +1,10 @@
-import React, { Component, Suspense, Lazy } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Statistics from '../components/statistics/statistics.component'
 import PieChart from '../components/PieChart/piechart.components';
-// import WorldMap from "../components/worldMap/worldmap.component";
+import WorldMap from "../components/worldMap/worldmap.component";
 import WorldList from '../components/WorldList/worldlist.component';
 
-
-const WorldMap = React.lazy(() => import('../components/worldMap/worldmap.component'));
 
 class Home extends Component {
 
@@ -27,18 +25,14 @@ class Home extends Component {
                     last_updatedRecovered: data.recovered.last_updated
                 }} />
 
-                <Suspense fallback={<div>Loaind...</div>}>
 
-                    <WorldMap />
-                </Suspense>
+                <WorldMap />
 
-                <PieChart />
-                <WorldList />
 
-                {/* } <div className="container">
+                <div className="container">
                     <PieChart />
                     <WorldList />
-                </div> */}
+                </div>
             </div>);
     }
 }

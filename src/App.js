@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import './App.css';
 import LoaderHome from './components/Loader/loader.component';
 import { connect } from 'react-redux';
-import { fetchDataAsync } from '../src/components/redux/actions/actions';
+import { fetchDataAsync } from './redux/actions/actions';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import Country from "./components/countryData/country.component";
 import Home from './pages/home.component';
+import Logo from './Images/corona.png';
 
 
 class App extends Component {
@@ -40,13 +41,19 @@ class App extends Component {
       <div className="App">
         {
           this.props.errorMessage ?
-            <div>Error</div> : null}
-
-        <Switch>
-          <Route path='/country/:countryId' component={Country} />} />
+            <div>Error</div> :
+            <div>
+              <div className="Mainheader">
+                <img className="logo" src={Logo} />
+                <h1 className="corona">CORONAVIRUS (COVID-19)</h1>
+              </div>
+              <Switch>
+                <Route path='/country/:countryId' component={Country} />} />
               <Route exact path='/' component={Home} />
-          <Route path="*" render={() => <Redirect to="/" />} />
-        </Switch>
+                <Route path="*" render={() => <Redirect to="/" />} />
+              </Switch>
+            </div>
+        }
       </div>
 
     );

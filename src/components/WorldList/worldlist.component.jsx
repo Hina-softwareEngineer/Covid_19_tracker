@@ -1,71 +1,13 @@
 import React, { Component } from 'react';
 import './worldlist.styles.css';
-import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import ListBox from '../ListBox/listbox.component';
 
 class WorldList extends Component {
 
     state = {
         cleanedData: this.props.cleanedData,
         search: "",
-    }
-
-    // displayList() {
-    //     let states = this.state.data;
-    //     let historyConfirmed = states.confirmed.locations;
-    //     let historyRecovered = states.recovered.locations;
-    //     let historyDeath = states.deaths.locations;
-
-
-    //     let arr = {};
-
-    //     for (var i = 0; i < historyConfirmed.length; i++) {
-    //         if (!arr[historyConfirmed[i].country]) {
-
-    //             arr[historyConfirmed[i].country] = {
-    //                 country_code: historyConfirmed[i].country_code,
-    //                 province: historyConfirmed[i].province,
-    //                 confirmed: historyConfirmed[i].latest,
-    //                 deaths: historyDeath[i].latest,
-    //             };
-    //         }
-    //         else {
-    //             arr[historyConfirmed[i].country].confirmed += historyConfirmed[i].latest;
-    //             arr[historyConfirmed[i].country].deaths += historyDeath[i].latest;
-    //         }
-    //     }
-
-
-
-    //     for (var i = 0; i < historyRecovered.length; i++) {
-    //         if (historyRecovered[i].latest) {
-
-    //             if (arr[historyRecovered[i].country].recovered) {
-    //                 arr[historyRecovered[i].country].recovered += historyRecovered[i].latest;
-    //             }
-    //             else {
-    //                 arr[historyRecovered[i].country] = { ...arr[historyRecovered[i].country], recovered: historyRecovered[i].latest };
-
-    //             }
-    //         }
-    //         else {
-    //             arr[historyRecovered[i].country] = { ...arr[historyRecovered[i].country], recovered: 0 };
-    //         }
-    //     }
-
-    //     let names = Object.keys(arr);
-    //     let lastArray = [];
-    //     for (var i = 0; i < names.length; i++) {
-    //         lastArray.push({ country: names[i], values: arr[names[i]] });
-    //     }
-    //     this.setState({
-    //         cleanedData: lastArray,
-    //     });
-
-    // }
-
-    componentDidMount() {
-        // this.displayList();
     }
 
     SearchInput(e) {
@@ -110,7 +52,7 @@ class WorldList extends Component {
     render() {
 
         const { cleanedData, search } = this.state;
-        let { match, history } = this.props;
+
 
         const SearchResult = cleanedData.filter(country =>
             country.country.toLowerCase().includes(search.toLowerCase()));
@@ -136,29 +78,10 @@ class WorldList extends Component {
                 </div>
                 {
                     SearchResult &&
-                    SearchResult.map((country, index) => {
-                        return (
-
-                            <div key={index} id="country" className="countryData">
-
-                                <div className="names">
-                                    <h3 onClick={() => history.push(`${match.path}country/${country.country}`)}>{country.country}</h3>
-                                    <h6>
-                                        <span>{country.values.confirmed.toLocaleString(navigator.language, { minimumFractionDigits: 0 })} Confirmed
-                                        </span>
-                                    &nbsp;&&nbsp;
-                                <span>{country.values.deaths.toLocaleString(navigator.language, { minimumFractionDigits: 0 })} Deaths</span></h6>
-                                </div>
-
-                                <div className="codes">
-                                    <h6>{country.values.country_code}</h6>
-                                    <h6>{country.values.recovered.toLocaleString(navigator.language, { minimumFractionDigits: 0 })} Recovered</h6>
-
-                                </div>
-
-                            </div>
-                        );
-                    })
+                    SearchResult.map((country, index) =>
+                        (
+                            <ListBox country={{ country, index }} />
+                        ))
                 }
             </div>
         );
@@ -172,4 +95,4 @@ const mapStateToProps = state => ({
 });
 
 
-export default withRouter(connect(mapStateToProps, null)(WorldList));
+export default connect(mapStateToProps, null)(WorldList);

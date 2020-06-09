@@ -50,4 +50,23 @@
   background: #31e737; 
 }
 
+.Mainheader{
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
+.logo{
+  width:150px;
+  height:150px;
+  transform: scale(1.5, 1.5);
+  text-align: center;
+}
+
+.corona{
+  margin-left: 40px;
+  color: #ffffff;
+  font-size: 2.2rem;
+}
