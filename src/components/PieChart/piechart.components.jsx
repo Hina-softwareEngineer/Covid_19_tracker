@@ -3,20 +3,14 @@ import './piechart.styles.css';
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
 import am4themes_animated from "@amcharts/amcharts4/themes/animated";
-
+import { connect } from 'react-redux';
 
 am4core.useTheme(am4themes_animated);
 
 class PieChart extends Component {
 
-    state = {
-        topTenConfirmed: this.props.data,
-    }
-
-
-
     showChart() {
-        let toptenCountries = this.state.topTenConfirmed.locations;
+        let toptenCountries = this.props.data.locations;
 
 
         let cleaningData = {};
@@ -85,4 +79,10 @@ class PieChart extends Component {
 
 }
 
-export default PieChart;
+const mapStateToProps = state => ({
+    data: state.country.data.confirmed,
+
+});
+
+
+export default connect(mapStateToProps, null)(PieChart);

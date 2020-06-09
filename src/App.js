@@ -38,6 +38,10 @@ class App extends Component {
     return (
 
       <div className="App">
+        {
+          this.props.errorMessage ?
+            <div>Error</div> : null}
+
         <Switch>
           <Route path='/country/:countryId' component={Country} />} />
               <Route exact path='/' component={Home} />
@@ -51,7 +55,8 @@ class App extends Component {
 }
 
 const mapStateToProps = state => ({
-  isFetching: state.country.isFetching
+  isFetching: state.country.isFetching,
+  errorMessage: state.country.errorMessage
 })
 
 const mapDispatchToProps = dispatch => ({

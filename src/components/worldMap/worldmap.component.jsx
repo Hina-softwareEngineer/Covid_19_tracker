@@ -1,23 +1,25 @@
 import React, { Component } from 'react';
 import "./worldmap.styles.css";
+import { connect } from 'react-redux';
+import { confirmedHistory, deathsHistory, recoveredHistory } from '../redux/actions/worldMapAction';
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4maps from "@amcharts/amcharts4/maps";
 import am4geodata_worldLow from "@amcharts/amcharts4-geodata/worldLow";
 
 
 
-class Statistics extends Component {
+class WorldMap extends Component {
 
     state = {
-        data: this.props.data,
-        worldmap: this.props.data.confirmed.locations
+        color: "#03a9f4",
+        border: "#000051",
     }
 
-    chartMaker(color, border) {
-        let chart = am4core.create("chartdiv", am4maps.MapChart);
+    chartMaker() {
+        var chart = am4core.create("chartdiv", am4maps.MapChart);
 
+        let worldMap = this.props.history;
 
-        let worldMap = this.state.worldmap;
 
         let mapData = [];
 
@@ -26,7 +28,7 @@ class Statistics extends Component {
                 id: country.country_code,
                 name: country.country,
                 value: country.latest,
-                color: color
+                color: this.state.color
             });
         });
 
@@ -64,7 +66,7 @@ class Statistics extends Component {
         circle.fillOpacity = 0.7;
         circle.propertyFields.fill = "color";
         circle.tooltipText = "{name}: [bold]{value}[/]";
-        circle.stroke = am4core.color(border);
+        circle.stroke = am4core.color(this.state.border);
 
 
         imageSeries.heatRules.push({
@@ -93,47 +95,63 @@ class Statistics extends Component {
 
     }
 
+
     componentDidMount() {
-        this.chartMaker("#03a9f4");
+        this.props.confirmedData(this.props.worldmap);
+    }
+
+    componentWillUnmount() {
+        if (this.chart) {
+            this.chart.dispose();
+        }
     }
 
     render() {
+        console.log('maphsislfjla', this.props.history);
+        this.chartMaker();
 
         return (
-            <div>
+            <div className="map">
+
                 <div className="header">
                     <h1>World Affected Nations by Covid-19</h1>
                 </div>
                 <div className="buttons">
-                    <button className="button blueButton" onClick={() => {
-                        this.setState({
-                            worldmap: this.state.data.confirmed.locations
-                        }, () => { this.chartMaker("#03a9f4", "#000051"); });
+                    <button className="button blueButton" onClick={
+                        () => {
+                            this.props.confirmedData(this.props.worldmap);
+                            this.setState({ color: "#03a9f4", border: "#000051" });
+                        }
 
-                    }}>Confirmed</button>
+                    }>Confirmed</button>
                     <button className="button redButton" onClick={() => {
-                        this.setState({
-                            worldmap: this.state.data.deaths.locations
-                        }, () => {
-
-                            this.chartMaker("#f44336", "#ba000d");
-                        });
-
+                        this.props.deathsData(this.props.worldmap);
+                        this.setState({ color: "#f44336", border: "#ba000d" });
                     }}>Deaths</button>
                     <button className="button greenButton" onClick={() => {
-                        this.setState({
-                            worldmap: this.state.data.recovered.locations
-                        }, () => {
-                            this.chartMaker("#4caf50", "#005005");
-                        })
+                        this.props.recoveredData(this.props.worldmap);
+                        this.setState({ color: "#4caf50", border: "#005005" });
                     }}>Recovered</button>
                 </div>
 
                 <div id="chartdiv" ></div>
+
             </div>
         );
 
     }
 }
 
-export default Statistics;
+const mapStateToProps = state => ({
+    history: state.map.history,
+    worldmap: state.country.data
+
+});
+
+const mapDispatchToProps = dispatch => ({
+    confirmedData: (data) => dispatch(confirmedHistory(data)),
+    deathsData: (data) => dispatch(deathsHistory(data)),
+    recoveredData: (data) => dispatch(recoveredHistory(data)),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(WorldMap);
