@@ -3,24 +3,11 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Statistics from '../statistics/statistics.component';
 import PieChart from '../PieChart/piechart.components';
-import Line from './line.component';
+import Line from '../LineChart/line.component';
 import * as am4core from "@amcharts/amcharts4/core";
 
 
 class Country extends Component {
-
-
-
-    lineGraph(country) {
-
-
-        // chart code
-
-
-        console.log(country);
-
-
-    }
 
     render() {
         let AllProps = this.props;
@@ -30,7 +17,7 @@ class Country extends Component {
         })
         console.log("countrydata", countryData)
         console.log(countryData[0].values.confirmed);
-        // this.lineGraph(countryData);
+
 
         return (
             <div>

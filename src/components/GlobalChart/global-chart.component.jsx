@@ -13,12 +13,16 @@ am4core.useTheme(am4themes_animated);
 
 class GlobalChart extends Component {
 
+    state = {
+        count: 1,
+    }
+
     chartData1() {
         var chart = am4core.create("chartdiv", am4maps.MapChart);
 
         let allProps = this.props;
         let worldMap = allProps.chartData;
-        console.log("worldmap chartData`")
+        console.log("chartdat1", worldMap);
 
         let mapData = [];
 
@@ -93,15 +97,52 @@ class GlobalChart extends Component {
         })
     }
 
+    componentDidMount() {
+        this.setState({ count: 1 });
+        setTimeout(() => {
+            this.setState({ count: 2 })
+            this.chartData1();
+            console.log("component did mount")
+        }, 4000);
+    }
 
+
+
+
+    componentDidUpdate() {
+        console.log("component did update")
+    }
+
+    componentWillMount() {
+        console.log('component will mount')
+    }
+
+    componentWillUpdate() {
+        // this.setState({ dataLoaded: false });
+        // setTimeout(() => {
+        //     this.setState({ dataLoaded: true })
+        //     this.chartData1();
+        // }, 4000);
+        console.log("component will update")
+    }
+
+    componentDidUpdate() {
+        console.log('component did update')
+    }
+
+    componentWillReceiveProps() {
+        console.log("recieve props in component")
+    }
 
     render() {
-        console.log("render", this.props.chartData)
-
-        this.chartData1();
+        console.log("render", this.props.chartData);
+        if (this.state.count == 2) {
+            this.chartData1();
+        }
 
         return (
-            <div id="chartdiv" ></div>
+            <div id="chartdiv"></div>
+
         );
     }
 }

@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
+import './line.styles.css';
 import am4themes_animated from "@amcharts/amcharts4/themes/animated";
 
 am4core.useTheme(am4themes_animated);
@@ -26,11 +27,6 @@ class Line extends Component {
         let chart_data = [];
         var i = 0;
 
-        // for (var dates in histories) {
-        //     chart_data.push({ date: new Date(dates), name: "names" + i, value: histories[dates], linecolor: "green" });
-        //     i = i + 1;
-        // }
-        // console.log('history data: ', chart_data);
 
         keys.forEach(key => {
             chart_data.push({ date: new Date(key), name: "names" + i, value: histories[key], value2: histories2[key], value3: histories3[key] });
@@ -43,45 +39,44 @@ class Line extends Component {
         let dateAxis = chart.xAxes.push(new am4charts.DateAxis());
 
         dateAxis.renderer.minGridDistance = 50;
-        let valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+        dateAxis.renderer.labels.template.fill = am4core.color("#ffffff");
 
+        let valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+        valueAxis.renderer.labels.template.fill = am4core.color("#ffffff");
         valueAxis.renderer.minWidth = 35;
 
         let series = chart.series.push(new am4charts.LineSeries());
         series.dataFields.dateX = "date";
         series.dataFields.valueY = "value";
-
         series.tooltipText = "{valueY.value} cases Confirmed";
         chart.cursor = new am4charts.XYCursor();
-
+        chart.cursor.lineX.stroke = am4core.color("#9e9e9e");
+        chart.cursor.lineY.stroke = am4core.color("#9e9e9e");
+        chart.cursor.lineX.strokeWidth = 2;
+        chart.cursor.lineY.strokeWidth = 2;
         series.strokeWidth = 2;
-        // series.fill = "red";
-        // chart.colors = "red";
+        series.fill = "#0394f4";
+        chart.fillModifier = am4core.color("#ffffff");
+        series.stroke = am4core.color("#03a9f4");
 
-        chart.stroke = am4core.color("green");
-        series.stroke = am4core.color("red");
-
-        // series.propertyFields.fill = "color";
-
-        // series.propertyFields.stroke = "lineColor";
-        // series.propertyFields.fill = "lineColor";
 
 
         let series2 = chart.series.push(new am4charts.LineSeries());
         series2.dataFields.valueY = "value2";
         series2.dataFields.dateX = "date";
         series2.strokeWidth = 2;
-        series2.tooltipText = "{valueY.value} cases Recovered";
-        series2.stroke = am4core.color("pink");
+        series2.fill = "red";
+        series2.tooltipText = "{valueY.value} cases Deaths";
+        series2.stroke = am4core.color("#f44336");
+
 
         let series3 = chart.series.push(new am4charts.LineSeries());
         series3.dataFields.valueY = "value3";
         series3.dataFields.dateX = "date";
         series3.strokeWidth = 2;
-        series3.tooltipText = "{valueY.value} cases Deaths";
-        series3.stroke = am4core.color("green");
-        // series2.strokeDasharray = "3,4";
-        // series2.stroke = series.stroke;
+        series3.stroke = am4core.color("#4caf50");
+        series3.fill = "#03f42b";
+        series3.tooltipText = "{valueY.value} cases Recovered";
 
 
         this.chart = chart;
@@ -90,9 +85,15 @@ class Line extends Component {
 
     render() {
         return (
-            <div id="chartdiv4"
-                style={{ height: "500px" }}>
+            <div className="map">
 
+                <div className="header">
+                    <h1>Pakistan's Covid-19 History</h1>
+                </div>
+                <div id="chartdiv4"
+                    style={{ height: "500px" }}>
+
+                </div>
             </div>
         );
     }
