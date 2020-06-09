@@ -1,9 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { withRouter } from 'react-router-dom';
 
-const ListBox = ({ country, index }) => {
-    let { match, history } = this.props;
-
+const ListBox = ({ countryData, match, history }) => {
+    let { country, index } = countryData;
 
     return (
 

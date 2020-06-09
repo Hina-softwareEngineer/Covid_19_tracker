@@ -76,13 +76,16 @@ class WorldList extends Component {
                         <option value="alphabetically">Alphabets (A-Z)</option>
                     </select>
                 </div>
-                {
-                    SearchResult &&
-                    SearchResult.map((country, index) =>
-                        (
-                            <ListBox country={{ country, index }} />
-                        ))
-                }
+
+                <div className="countryBox">
+                    {
+                        SearchResult &&
+                        SearchResult.map((country, index) =>
+                            (
+                                <ListBox key={index} countryData={{ country, index }} />
+                            ))
+                    }
+                </div>
             </div>
         );
     }

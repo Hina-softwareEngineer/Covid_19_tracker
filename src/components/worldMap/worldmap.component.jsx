@@ -58,6 +58,8 @@ class WorldMap extends Component {
 
                 <GlobalChart chartData={this.props.history} color={this.state.color} border={this.state.border} />
 
+                }
+
             </div >
         );
 

@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Statistics from '../statistics/statistics.component';
 import PieChart from '../PieChart/piechart.components';
 import Line from './line.component';
+import * as am4core from "@amcharts/amcharts4/core";
 
 
 class Country extends Component {
@@ -43,47 +44,17 @@ class Country extends Component {
                     last_updatedRecovered: AllProps.data.recovered.last_updated
                 }} />
 
-                {/* <div className="boxes">
-                <Statistics stats={this.state.search[0].values.confirmed} name="Confirmed" color="blue" />
-                <Statistics stats={this.state.search[0].values.deaths} name="Deaths" color="red" />
-                <Statistics stats={this.state.search[0].values.recovered} name="Recovered" color="green" />
-            </div>
-            :
-            "statistics " */}
-
-
                 {
                     countryData.length > 0 ?
-
-
                         <Line country={countryData} />
-                        : "line"}
-                {/* <div className="map">
-                    {
-                        states.data ? <WorldMap data={states.data} /> : null
-                    }
+                        : "line"
+                }
 
-                </div> */}
                 <PieChart chart={[
-                    {
-                        country: "confirmed", cases: countryData[0].values.confirmed,
-                    },
-                    { country: "Deaths", cases: countryData[0].values.deaths, },
-                    {
-                        country: "Recovered", cases: countryData[0].values.recovered,
-                    }]} />
-                {/* <div className="container">
-
-                    {
-                        states.data ? <PieChart data={states.data.confirmed} /> : null
-                    }
-
-                    {
-                        states.data ? <WorldList data={states.data} /> : null
-                    } 
-
-                </div> */}
-
+                    { country: "Confirmed", cases: countryData[0].values.confirmed, color: am4core.color("#03a9f4") },
+                    { country: "Deaths", cases: countryData[0].values.deaths, color: am4core.color("#f44336") },
+                    { country: "Recovered", cases: countryData[0].values.recovered, color: am4core.color("#4caf50") }
+                ]} heading={"Covid-19 Statistics"} />
 
             </div>
         );

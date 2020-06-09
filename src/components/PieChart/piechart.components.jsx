@@ -3,46 +3,13 @@ import './piechart.styles.css';
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
 import am4themes_animated from "@amcharts/amcharts4/themes/animated";
-import { connect } from 'react-redux';
+
 
 am4core.useTheme(am4themes_animated);
 
 class PieChart extends Component {
 
     showChart() {
-        // let toptenCountries = this.props.data.locations;
-
-
-        // let cleaningData = {};
-        // // Removing countries having Provinces and adding total cases of those countries
-        // for (var i = 0; i < toptenCountries.length; i++) {
-        //     if (!cleaningData[toptenCountries[i].country]) {
-        //         cleaningData[toptenCountries[i].country] = toptenCountries[i].latest
-        //     }
-        //     else {
-        //         cleaningData[toptenCountries[i].country] += toptenCountries[i].latest;
-        //     }
-        // }
-
-        // let chartData = [];
-        // for (var data in cleaningData) {
-        //     chartData.push({ country: data, cases: cleaningData[data] });
-        // }
-
-        // // sorting data in descending order
-        // chartData.sort(function (a, b) { if (a.cases < b.cases) return 1; if (a.cases > b.cases) return -1; return 0 });
-
-        // let others = 0;
-        // let Finaldata = chartData.filter((country, index) => {
-        //     if (index < 10) {
-        //         return country;
-        //     }
-        //     if (index > 9) {
-        //         others += country.cases
-        //     }
-        // });
-
-        // Finaldata.push({ country: "Other", cases: others });
 
         let chart = am4core.create("chartdiv1", am4charts.PieChart);
         // chart.data = Finaldata;
@@ -52,8 +19,9 @@ class PieChart extends Component {
         var pieSeries = chart.series.push(new am4charts.PieSeries());
         pieSeries.dataFields.value = "cases";
         pieSeries.dataFields.category = "country";
-        pieSeries.slices.template.stroke = am4core.color("#546e7a");
+        pieSeries.slices.template.stroke = am4core.color("#1B5E20");
         pieSeries.slices.template.strokeWidth = 1;
+        pieSeries.slices.template.propertyFields.fill = "color";
         pieSeries.alignLabels = false;
         pieSeries.ticks.template.disabled = true;
         pieSeries.labels.template.text = "";
@@ -71,9 +39,10 @@ class PieChart extends Component {
 
 
     render() {
+
         return (
             <div className="piechart">
-                <h1>Most Affected Countries</h1>
+                <h1>{this.props.heading}</h1>
                 <div id="chartdiv1" style={{ width: "100%", height: "500px" }}></div>
             </div>
         );
@@ -81,10 +50,6 @@ class PieChart extends Component {
 
 }
 
-const mapStateToProps = state => ({
-    data: state.country.data.confirmed,
-
-});
 
 
-export default connect(mapStateToProps, null)(PieChart);
+export default PieChart;

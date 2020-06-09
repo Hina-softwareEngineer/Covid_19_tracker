@@ -18,6 +18,7 @@ class GlobalChart extends Component {
 
         let allProps = this.props;
         let worldMap = allProps.chartData;
+        console.log("worldmap chartData`")
 
         let mapData = [];
 
@@ -94,14 +95,8 @@ class GlobalChart extends Component {
 
 
 
-    componentWillUnmount() {
-        if (this.chart) {
-            this.chart.dispose();
-        }
-    }
-
-
     render() {
+        console.log("render", this.props.chartData)
 
         this.chartData1();
 

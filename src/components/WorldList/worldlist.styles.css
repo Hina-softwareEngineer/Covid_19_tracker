@@ -60,11 +60,9 @@ select{
     text-align: center; 
     letter-spacing: 2px;  
     height: 600px;
-    overflow-x: hidden;
-    overflow-y: scroll;
     /* width: 100%; */
     flex-grow: 1;
-    scroll-behavior: smooth;
+   
 }
 
 .countryData{
@@ -74,12 +72,13 @@ select{
     padding: 10px 0;
     text-align: left;
     padding-bottom: 8px;
-    margin: 0px 30px;
+    margin: 0px 20px;
     border-bottom: 1px solid lightgray;
 }
 
 h3{
     margin-bottom: 8px;
+    cursor: pointer;
 }
 
 .names > h6 > span:first-child{
@@ -104,24 +103,34 @@ h3{
     text-shadow:2px 2px #1B5E20;  
 }
 
+.countryBox{
+    margin-top: 30px;
+    height: 450px;
+    margin-left: 10px;
+    margin-right: 10px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+}
+
 /* width */
-.countriesList::-webkit-scrollbar {
+.countryBox::-webkit-scrollbar {
     width: 10px;
   }
   
   /* Track */
-.countriesList::-webkit-scrollbar-track {
+.countryBox::-webkit-scrollbar-track {
     box-shadow: inset 0 0 8px rgba(0,0,0,0.1);
     border-radius: 10px;
   }
    
   /* Handle */
-.countriesList::-webkit-scrollbar-thumb {
+.countryBox::-webkit-scrollbar-thumb {
     background: #03a9f4; 
     border-radius: 10px;
   }
   
   /* Handle on hover */
-.countriesList::-webkit-scrollbar-thumb:hover {
+.countryBox::-webkit-scrollbar-thumb:hover {
     background: #0395da; 
   }

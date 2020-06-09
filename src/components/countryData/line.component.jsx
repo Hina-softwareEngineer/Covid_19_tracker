@@ -90,7 +90,8 @@ class Line extends Component {
 
     render() {
         return (
-            <div id="chartdiv4">
+            <div id="chartdiv4"
+                style={{ height: "500px" }}>
 
             </div>
         );

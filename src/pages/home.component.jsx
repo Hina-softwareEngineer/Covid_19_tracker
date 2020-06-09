@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Statistics from '../components/statistics/statistics.component'
-import PieChart from '../components/PieChart/piechart.components';
 import WorldMap from "../components/worldMap/worldmap.component";
 import WorldList from '../components/WorldList/worldlist.component';
+import ChartPie from '../components/TopTenChart/toptenchart.component';
 
 
 class Home extends Component {
@@ -30,7 +30,7 @@ class Home extends Component {
 
 
                 <div className="container">
-                    <PieChart />
+                    <ChartPie />
                     <WorldList />
                 </div>
             </div>);
