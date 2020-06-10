@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
-import { connect } from 'react-redux';
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
 import './line.styles.css';
@@ -88,7 +86,7 @@ class Line extends Component {
             <div className="map">
 
                 <div className="header">
-                    <h1>Pakistan's Covid-19 History</h1>
+                    <h1>{this.props.country.county} Covid-19 History</h1>
                 </div>
                 <div id="chartdiv4"
                     style={{ height: "500px" }}>

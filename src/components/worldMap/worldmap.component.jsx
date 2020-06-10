@@ -2,9 +2,9 @@ import React, { Component, Suspense } from 'react';
 import "./worldmap.styles.css";
 import { connect } from 'react-redux';
 import { confirmedHistory, deathsHistory, recoveredHistory } from '../../redux/actions/worldMapAction';
-// import GlobalChart from '../GlobalChart/global-chart.component';
+import GlobalChart from '../GlobalChart/global-chart.component';
 
-const GlobalChart = React.lazy(() => import("../GlobalChart/global-chart.component"));
+// const GlobalChart = React.lazy(() => import("../GlobalChart/global-chart.component"));
 
 class WorldMap extends Component {
 
@@ -55,9 +55,9 @@ class WorldMap extends Component {
                     }>Recovered</button>
                 </div>
 
-                <Suspense fallback={<div>Loading.......</div>}>
-                    <GlobalChart chartData={this.props.history} color={this.state.color} border={this.state.border} />
-                </Suspense>
+
+                <GlobalChart chartData={this.props.history} color={this.state.color} border={this.state.border} />
+
 
             </div >
         );

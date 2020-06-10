@@ -5,6 +5,7 @@ import Statistics from '../statistics/statistics.component';
 import PieChart from '../PieChart/piechart.components';
 import Line from '../LineChart/line.component';
 import * as am4core from "@amcharts/amcharts4/core";
+import StackedChart from '../StackedChart/stackedchart.component';
 
 
 class Country extends Component {
@@ -43,6 +44,8 @@ class Country extends Component {
                     { country: "Recovered", cases: countryData[0].values.recovered, color: am4core.color("#4caf50") }
                 ]} heading={"Covid-19 Statistics"} />
 
+
+                <StackedChart country={countryData} />
             </div>
         );
     }
