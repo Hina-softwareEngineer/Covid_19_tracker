@@ -71,14 +71,14 @@ class StackedChart extends React.Component {
         // }];
 
         // Create axes
-        var categoryAxis = chart.xAxes.push(new am4charts.DateAxis());
-        categoryAxis.dataFields.date = "date";
-        categoryAxis.renderer.grid.template.location = 0;
-        categoryAxis.renderer.labels.template.fill = am4core.color("#ffffff");
-        // categoryAxis.showOnInit = false;
+        var dateAxis = chart.xAxes.push(new am4charts.DateAxis());
+        dateAxis.dataFields.date = "date";
+        dateAxis.renderer.grid.template.location = 0;
+        dateAxis.renderer.labels.template.fill = am4core.color("#ffffff");
+        // dateAxis.showOnInit = false;
         // ...
         chart.events.on("ready", function () {
-            categoryAxis.zoomToDates(
+            dateAxis.zoomToDates(
                 chart_data[chart_data.length - 6].date,
                 chart_data[chart_data.length - 1].date,
                 false,
@@ -137,6 +137,7 @@ class StackedChart extends React.Component {
         // Legend
         chart.scrollbarX = new am4core.Scrollbar();
         chart.legend = new am4charts.Legend();
+        chart.legend.labels.template.fill = am4core.color("lightgrey");
 
 
 

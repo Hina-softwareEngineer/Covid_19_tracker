@@ -1,0 +1,14 @@
+
+.error{
+    background-color: #455a64;
+}
+
+.error > img{
+    width: 500px;
+    height: 500px;
+    
+}
+
+.error > h1{
+    color: white;
+}

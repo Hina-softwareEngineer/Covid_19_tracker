@@ -7,6 +7,9 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import Country from "./components/countryData/country.component";
 import Home from './pages/home.component';
 import Logo from './Images/corona.png';
+import Error from './components/ErrorPage/error.component';
+import Chatbot from './components/Chatbot/chatbot.component';
+
 
 
 class App extends Component {
@@ -41,7 +44,7 @@ class App extends Component {
       <div className="App">
         {
           this.props.errorMessage ?
-            <div>Error</div> :
+            <Error /> :
             <div>
               <div className="Mainheader">
                 <img className="logo" src={Logo} />
@@ -52,8 +55,11 @@ class App extends Component {
               <Route exact path='/' component={Home} />
                 <Route path="*" render={() => <Redirect to="/" />} />
               </Switch>
+
+              <Chatbot />
             </div>
         }
+
       </div>
 
     );

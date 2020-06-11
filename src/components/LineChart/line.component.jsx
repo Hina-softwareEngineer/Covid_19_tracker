@@ -50,6 +50,7 @@ class Line extends Component {
         chart.cursor = new am4charts.XYCursor();
         chart.cursor.lineX.stroke = am4core.color("#9e9e9e");
         chart.cursor.lineY.stroke = am4core.color("#9e9e9e");
+        series.name = "Confirmed";
         chart.cursor.lineX.strokeWidth = 2;
         chart.cursor.lineY.strokeWidth = 2;
         series.strokeWidth = 2;
@@ -63,6 +64,7 @@ class Line extends Component {
         series2.dataFields.valueY = "value2";
         series2.dataFields.dateX = "date";
         series2.strokeWidth = 2;
+        series2.name = "Deaths";
         series2.fill = "red";
         series2.tooltipText = "{valueY.value} cases Deaths";
         series2.stroke = am4core.color("#f44336");
@@ -72,11 +74,13 @@ class Line extends Component {
         series3.dataFields.valueY = "value3";
         series3.dataFields.dateX = "date";
         series3.strokeWidth = 2;
+        series3.name = "Recovered";
         series3.stroke = am4core.color("#03f42b");
         series3.fill = "#03f42b";
         series3.tooltipText = "{valueY.value} cases Recovered";
 
-
+        chart.legend = new am4charts.Legend();
+        chart.legend.labels.template.fill = am4core.color("lightgrey");
         this.chart = chart;
 
     }
