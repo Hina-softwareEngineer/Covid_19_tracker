@@ -28,7 +28,7 @@ class StackedChart extends React.Component {
 
 
         keys.forEach(key => {
-            chart_data.push({ date: new Date(key), name: "names" + i, value: histories[key], value2: histories2[key], value3: histories3[key] });
+            chart_data.push({ date: new Date(key), value: histories[key], value2: histories2[key], value3: histories3[key] });
         });
 
 
@@ -37,6 +37,12 @@ class StackedChart extends React.Component {
         var chart = am4core.create("chartdiv", am4charts.XYChart);
         chart.data = chart_data;
 
+
+        chart.colors.list = [
+            am4core.color("#03a9f4"),
+            am4core.color("#f44336"),
+            am4core.color("#4caf50"),
+        ];
         // Add data
         // chart.data = [{
         //   "year": "2016",
@@ -68,13 +74,29 @@ class StackedChart extends React.Component {
         var categoryAxis = chart.xAxes.push(new am4charts.DateAxis());
         categoryAxis.dataFields.date = "date";
         categoryAxis.renderer.grid.template.location = 0;
-        // categoryAxis.zoomToDates(start, end);
-
+        categoryAxis.renderer.labels.template.fill = am4core.color("#ffffff");
+        // categoryAxis.showOnInit = false;
+        // ...
+        chart.events.on("ready", function () {
+            categoryAxis.zoomToDates(
+                chart_data[chart_data.length - 6].date,
+                chart_data[chart_data.length - 1].date,
+                false,
+                true // this makes zoom instant
+            );
+        });
 
         var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
         valueAxis.renderer.inside = true;
         valueAxis.renderer.labels.template.disabled = true;
         valueAxis.min = 0;
+
+
+        var fillModifier = new am4core.LinearGradientModifier();
+        fillModifier.brightnesses = [-0.2, 1, -0.2];
+        fillModifier.offsets = [0, 0.5, 1];
+
+
 
         // Create series
         function createSeries(field, name) {
@@ -86,12 +108,16 @@ class StackedChart extends React.Component {
             series.dataFields.dateX = "date";
             series.sequencedInterpolation = true;
 
+
+            series.columns.template.fillModifier = fillModifier;
+            series.alignLabels = true;
+
             // Make it stacked
             series.stacked = true;
 
             // Configure columns
             series.columns.template.width = am4core.percent(60);
-            series.columns.template.tooltipText = "[bold]{series.name}[/]\n[font-size:14px]{dateX}: {valueY}";
+            series.columns.template.tooltipText = "[bold]{name}[/]\n[font-size:14px]{dateX}: {valueY}";
 
             // Add label
             var labelBullet = series.bullets.push(new am4charts.LabelBullet());
@@ -198,11 +224,12 @@ class StackedChart extends React.Component {
     }
 
     render() {
+        console.log(this.props.country)
         return (
             <div className="map">
 
                 <div className="header">
-                    <h1>{this.props.country.country} Covid-19 History</h1>
+                    <h1>{this.props.country[0].country} Covid-19 History</h1>
                 </div>
                 <div id="chartdiv"
                     style={{ height: "500px" }}>

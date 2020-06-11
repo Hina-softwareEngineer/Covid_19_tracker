@@ -42,7 +42,7 @@ class Country extends Component {
                     { country: "Confirmed", cases: countryData[0].values.confirmed, color: am4core.color("#03a9f4") },
                     { country: "Deaths", cases: countryData[0].values.deaths, color: am4core.color("#f44336") },
                     { country: "Recovered", cases: countryData[0].values.recovered, color: am4core.color("#4caf50") }
-                ]} heading={"Covid-19 Statistics"} />
+                ]} heading={`${countryData[0].country} Covid-19 Statistics`} />
 
 
                 <StackedChart country={countryData} />

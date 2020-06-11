@@ -8,7 +8,7 @@ am4core.useTheme(am4themes_animated);
 class Line extends Component {
 
     componentDidMount() {
-        am4core.useTheme(am4themes_animated);
+
 
         let chart = am4core.create("chartdiv4", am4charts.XYChart);
 
@@ -72,7 +72,7 @@ class Line extends Component {
         series3.dataFields.valueY = "value3";
         series3.dataFields.dateX = "date";
         series3.strokeWidth = 2;
-        series3.stroke = am4core.color("#4caf50");
+        series3.stroke = am4core.color("#03f42b");
         series3.fill = "#03f42b";
         series3.tooltipText = "{valueY.value} cases Recovered";
 
