@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import './worldlist.styles.css';
+import './countriesList.styles.css';
 import { connect } from 'react-redux';
 import ListBox from '../ListBox/listbox.component';
 
-class WorldList extends Component {
+class CountriesList extends Component {
 
     state = {
         cleanedData: this.props.cleanedData,
@@ -98,4 +98,4 @@ const mapStateToProps = state => ({
 });
 
 
-export default connect(mapStateToProps, null)(WorldList);
+export default connect(mapStateToProps, null)(CountriesList);

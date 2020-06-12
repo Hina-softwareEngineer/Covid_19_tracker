@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Statistics from '../components/statistics/statistics.component'
-import WorldMap from "../components/worldMap/worldmap.component";
-import WorldList from '../components/WorldList/worldlist.component';
-import ChartPie from '../components/TopTenChart/toptenchart.component';
+import Statistics from '../../components/statistics/statistics.component'
+import WorldMap from "../../components/worldMap/worldmap.component";
+import CountriesList from '../../components/CountriesList/countriesList.component';
+import ToptenCountries from '../../components/TopTenChart/toptenchart.component';
 
 
 class Home extends Component {
@@ -30,8 +30,8 @@ class Home extends Component {
 
 
                 <div className="container">
-                    <ChartPie />
-                    <WorldList />
+                    <ToptenCountries />
+                    <CountriesList />
                 </div>
             </div>);
     }

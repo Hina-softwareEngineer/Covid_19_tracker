@@ -4,8 +4,8 @@ import LoaderHome from './components/Loader/loader.component';
 import { connect } from 'react-redux';
 import { fetchDataAsync } from './redux/actions/actions';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import Country from "./components/countryData/country.component";
-import Home from './pages/home.component';
+import Country from "./pages/countryData/country.component";
+import Home from './pages/Home/home.component';
 import Logo from './Images/corona.png';
 import Error from './components/ErrorPage/error.component';
 import Chatbot from './components/Chatbot/chatbot.component';
@@ -56,7 +56,7 @@ class App extends Component {
                 <Route path="*" render={() => <Redirect to="/" />} />
               </Switch>
 
-              <Chatbot />
+              <Chatbot eventHandler={this.clickEventHandler} />
             </div>
         }
 
@@ -69,7 +69,7 @@ class App extends Component {
 
 const mapStateToProps = state => ({
   isFetching: state.country.isFetching,
-  errorMessage: state.country.errorMessage
+  errorMessage: state.country.errorMessage,
 })
 
 const mapDispatchToProps = dispatch => ({

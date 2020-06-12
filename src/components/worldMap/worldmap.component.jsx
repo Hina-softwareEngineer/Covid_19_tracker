@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { confirmedHistory, deathsHistory, recoveredHistory } from '../../redux/actions/worldMapAction';
 import GlobalChart from '../GlobalChart/global-chart.component';
 
-// const GlobalChart = React.lazy(() => import("../GlobalChart/global-chart.component"));
 
 class WorldMap extends Component {
 

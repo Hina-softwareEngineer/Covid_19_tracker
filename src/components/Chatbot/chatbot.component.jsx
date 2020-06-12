@@ -1,8 +1,32 @@
 import React from "react";
 import ChatBot from "react-simple-chatbot";
+import { connect } from 'react-redux';
 
+const Result = (props) => {
+    const { steps, country } = props;
+    const name = steps.countryName.value;
+    let countryData = country.filter(country => {
+        return country.country.toLowerCase() == name.toLowerCase();
+    })
 
-const CustomChatbot = (props) => {
+    if (countryData.length > 0) {
+
+        return (
+            <div>
+                <h3>{countryData[0].country}</h3>
+                <p>Confirmed Cases : {countryData[0].values.confirmed}</p>
+                <p>Death Cases : {countryData[0].values.deaths}</p>
+                <p>Recovered Cases : {countryData[0].values.recovered}</p>
+            </div>
+        );
+    }
+    else {
+        return (<div>Not Found.</div>);
+    }
+}
+
+const CustomChatbot = ({ cleanedData }) => {
+
 
     const config = {
         width: "300px",
@@ -13,15 +37,76 @@ const CustomChatbot = (props) => {
     const steps = [
         {
             id: "Greet",
-            message: "Hello, Welcome to our shop",
-            trigger: "Done"
+            message: "Hello, Welcome to Covid 19 Tracker",
+            trigger: "preventions"
+        },
+        {
+            id: "preventions",
+            message: "1. Clean you hands 👏🧼 with soap and water💦 \n\n2. Maintain a safe distance 🚫🧑‍🤝‍🧑\
+            \n\n3. Avoid touching your eyes, mouth and nose 🚫🤦 \n\n4. Avoid Crowded places🚫👬👬  \n\n5. Stay Home🏘, Stay Healthy🍀 🌸 🌼",
+            trigger: "Ask Name"
+        },
+        {
+            id: "Ask Name",
+            message: "Please type your name",
+            trigger: "Waiting user input for name"
+        },
+        {
+            id: "Waiting user input for name",
+            user: true,
+            trigger: "welcome"
+        },
+        {
+            id: "welcome",
+            message: "Hi {previousValue}, Glad to know you !!",
+            trigger: "Asking for country Name"
+        },
+        {
+            id: "Asking for country Name",
+            message: "Hi, Please type your Country Name?",
+            trigger: "countryName"
+        },
+        {
+            id: "countryName",
+            user: true,
+            trigger: "showData",
+        },
+        {
+            id: "showData",
+            component: <Result country={cleanedData} />,
+            trigger: "Done",
         },
         {
             id: "Done",
-            message: "Have a great day !!",
+            message: "Do you want to know more about other countries?",
+            trigger: "want more",
+        },
+        {
+            id: "want more",
+            options: [
+                {
+                    value: "yes",
+                    label: "Yes",
+                    trigger: "Asking for country Name"
+                },
+                {
+                    value: "no",
+                    label: "No",
+                    trigger: "bye"
+                }
+            ]
+        }, {
+            id: "bye",
+            message: "Hope you are well!! Take Care.",
             end: true
         }
     ];
     return <ChatBot steps={steps}  {...config} />;
 }
-export default CustomChatbot;
+
+
+const mapStateToProps = state => ({
+    cleanedData: state.country.cleanedData,
+});
+
+export default connect(mapStateToProps, null)(CustomChatbot);

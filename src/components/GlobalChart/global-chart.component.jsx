@@ -4,6 +4,8 @@ import * as am4core from "@amcharts/amcharts4/core";
 import * as am4maps from "@amcharts/amcharts4/maps";
 import am4geodata_worldLow from "@amcharts/amcharts4-geodata/worldLow";
 import am4themes_animated from "@amcharts/amcharts4/themes/animated";
+import Loader from 'react-loader-spinner';
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 
 
 // Themes begin
@@ -22,7 +24,7 @@ class GlobalChart extends Component {
 
         let allProps = this.props;
         let worldMap = allProps.chartData;
-        console.log("chartdat1", worldMap);
+
 
         let mapData = [];
 
@@ -102,42 +104,31 @@ class GlobalChart extends Component {
         setTimeout(() => {
             this.setState({ count: 2 })
             this.chartData1();
-            console.log("component did mount")
+
         }, 4000);
     }
 
 
 
 
-    componentDidUpdate() {
-        console.log("component did update")
-    }
 
-    componentWillMount() {
-        console.log('component will mount')
-    }
-
-    componentWillUpdate() {
-        // this.setState({ dataLoaded: false });
-        // setTimeout(() => {
-        //     this.setState({ dataLoaded: true })
-        //     this.chartData1();
-        // }, 4000);
-        console.log("component will update")
-    }
-
-    componentDidUpdate() {
-        console.log('component did update')
-    }
-
-    componentWillReceiveProps() {
-        console.log("recieve props in component")
-    }
 
     render() {
-        console.log("render", this.props.chartData);
+
         if (this.state.count == 2) {
             this.chartData1();
+        }
+
+        if (this.state.count == 1) {
+            return <div className="loadercenter"><Loader
+                type="Circles"
+                color="#00e5ff"
+                height={100}
+                width={100}
+                timeout={0} //3 secs 
+            />
+            </div>
+                ;
         }
 
         return (

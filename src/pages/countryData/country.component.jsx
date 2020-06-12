@@ -1,23 +1,20 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import Statistics from '../statistics/statistics.component';
-import PieChart from '../PieChart/piechart.components';
-import Line from '../LineChart/line.component';
+import Statistics from '../../components/statistics/statistics.component';
+import PieChart from '../../components/PieChart/piechart.components';
+import Line from '../../components/LineChart/line.component';
 import * as am4core from "@amcharts/amcharts4/core";
-import StackedChart from '../StackedChart/stackedchart.component';
+import StackedChart from '../../components/StackedChart/stackedchart.component';
 
 
 class Country extends Component {
 
     render() {
         let AllProps = this.props;
-        console.log(AllProps.cleanedData);
         let countryData = AllProps.cleanedData.filter(country => {
             return country.country == this.props.match.params.countryId;
         })
-        console.log("countrydata", countryData)
-        console.log(countryData[0].values.confirmed);
 
 
         return (

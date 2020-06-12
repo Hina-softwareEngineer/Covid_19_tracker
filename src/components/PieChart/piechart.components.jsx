@@ -3,17 +3,23 @@ import './piechart.styles.css';
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
 import am4themes_animated from "@amcharts/amcharts4/themes/animated";
+import Loader from 'react-loader-spinner';
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+
 
 
 am4core.useTheme(am4themes_animated);
 
 class PieChart extends Component {
 
+    state = {
+        loaded: false,
+    }
+
     showChart() {
 
         let chart = am4core.create("chartdiv1", am4charts.PieChart);
-        // chart.data = Finaldata;
-        console.log(this.props.chart)
+
         chart.data = this.props.chart;
         // Add and configure Series
         var pieSeries = chart.series.push(new am4charts.PieSeries());
@@ -34,11 +40,27 @@ class PieChart extends Component {
     }
 
     componentDidMount() {
-        this.showChart();
+        this.setState({ loaded: false });
+        setTimeout(() => {
+            this.setState({ loaded: true });
+            this.showChart();
+        }, 3000);
     }
 
 
     render() {
+
+        if (!this.state.loaded) {
+            return <div className="loadercenter"><Loader
+                type="Circles"
+                color="#00e5ff"
+                height={100}
+                width={100}
+                timeout={0} //3 secs 
+            />
+            </div>
+                ;
+        }
 
         return (
             <div className="piechart">

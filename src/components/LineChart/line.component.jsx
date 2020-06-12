@@ -14,7 +14,6 @@ class Line extends Component {
 
         chart.paddingRight = 20;
         let country = this.props.country;
-        console.log("contry", country);
         let histories = country[0].values.confirmedHistory;
         let histories2 = country[0].values.deathsHistory;
         let histories3 = country[0].values.recoveredHistory;
