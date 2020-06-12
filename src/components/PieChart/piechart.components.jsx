@@ -44,7 +44,7 @@ class PieChart extends Component {
         setTimeout(() => {
             this.setState({ loaded: true });
             this.showChart();
-        }, 3000);
+        }, 5000);
     }
 
 

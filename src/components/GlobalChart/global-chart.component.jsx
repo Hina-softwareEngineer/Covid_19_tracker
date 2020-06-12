@@ -105,7 +105,7 @@ class GlobalChart extends Component {
             this.setState({ count: 2 })
             this.chartData1();
 
-        }, 4000);
+        }, 5000);
     }
 
 
