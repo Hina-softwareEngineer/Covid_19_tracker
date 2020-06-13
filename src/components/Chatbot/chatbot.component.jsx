@@ -6,7 +6,7 @@ const Result = (props) => {
     const { steps, country } = props;
     const name = steps.countryName.value;
     let countryData = country.filter(country => {
-        return country.country.toLowerCase() == name.toLowerCase();
+        return country.country.toLowerCase() === name.toLowerCase();
     })
 
     if (countryData.length > 0) {
@@ -42,8 +42,7 @@ const CustomChatbot = ({ cleanedData }) => {
         },
         {
             id: "preventions",
-            message: "1. Clean you hands 👏🧼 with soap and water💦 \n\n2. Maintain a safe distance 🚫🧑‍🤝‍🧑\
-            \n\n3. Avoid touching your eyes, mouth and nose 🚫🤦 \n\n4. Avoid Crowded places🚫👬👬  \n\n5. Stay Home🏘, Stay Healthy🍀 🌸 🌼",
+            message: "1. Clean you hands 👏🧼 with soap and water💦 \n\n2. Maintain a safe distance 🚫🧑‍🤝‍🧑 \n\n3. Avoid touching your eyes, mouth and nose 🚫🤦 \n\n4. Avoid Crowded places🚫👬👬  \n\n5. Stay Home🏘, Stay Healthy🍀 🌸 🌼",
             trigger: "Ask Name"
         },
         {

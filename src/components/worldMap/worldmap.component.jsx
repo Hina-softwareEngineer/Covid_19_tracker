@@ -1,4 +1,4 @@
-import React, { Component, Suspense } from 'react';
+import React, { Component } from 'react';
 import "./worldmap.styles.css";
 import { connect } from 'react-redux';
 import { confirmedHistory, deathsHistory, recoveredHistory } from '../../redux/actions/worldMapAction';

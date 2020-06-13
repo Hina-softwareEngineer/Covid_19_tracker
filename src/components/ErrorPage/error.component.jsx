@@ -5,8 +5,8 @@ import './error.styles.css';
 const Error = () => {
     return (
         <div className="error">
-            <img src={error} />
-            <h1>Error while making Request</h1>
+            <img src={error} alt="404." />
+            <h1>Reload the Page</h1>
         </div>
     );
 }

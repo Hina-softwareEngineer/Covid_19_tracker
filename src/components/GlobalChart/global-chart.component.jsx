@@ -115,11 +115,11 @@ class GlobalChart extends Component {
 
     render() {
 
-        if (this.state.count == 2) {
+        if (this.state.count === 2) {
             this.chartData1();
         }
 
-        if (this.state.count == 1) {
+        if (this.state.count === 1) {
             return <div className="loadercenter"><Loader
                 type="Circles"
                 color="#00e5ff"

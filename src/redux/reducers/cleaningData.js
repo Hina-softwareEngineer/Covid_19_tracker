@@ -33,12 +33,12 @@ const cleanedData = (countries) => {
 
 
 
-    for (var i = 0; i < historyRecovered.length; i++) {
+    for (i = 0; i < historyRecovered.length; i++) {
         if (historyRecovered[i].latest) {
 
             if (arr[historyRecovered[i].country].recovered) {
                 arr[historyRecovered[i].country].recovered += historyRecovered[i].latest;
-                for (var dates in historyRecovered[i].history) {
+                for (dates in historyRecovered[i].history) {
                     arr[historyRecovered[i].country].recoveredHistory[dates] += historyRecovered[i].history[dates];
 
                 }
@@ -62,7 +62,7 @@ const cleanedData = (countries) => {
 
     let names = Object.keys(arr);
     let lastArray = [];
-    for (var i = 0; i < names.length; i++) {
+    for (i = 0; i < names.length; i++) {
         lastArray.push({ country: names[i], values: arr[names[i]] });
     }
     return lastArray;

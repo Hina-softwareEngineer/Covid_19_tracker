@@ -13,7 +13,7 @@ class Country extends Component {
     render() {
         let AllProps = this.props;
         let countryData = AllProps.cleanedData.filter(country => {
-            return country.country == this.props.match.params.countryId;
+            return country.country === this.props.match.params.countryId;
         })
 
 

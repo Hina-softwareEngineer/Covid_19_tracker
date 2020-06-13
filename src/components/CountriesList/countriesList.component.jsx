@@ -19,17 +19,17 @@ class CountriesList extends Component {
         let options = e.target.value;
         var sortedData;
 
-        if (options == "confirmed") {
+        if (options === "confirmed") {
             sortedData = [...this.state.cleanedData].sort((a, b) =>
                 (a.values.confirmed - b.values.confirmed)
             ).reverse();
         }
-        else if (options == "deaths") {
+        else if (options === "deaths") {
             sortedData = [...this.state.cleanedData].sort((a, b) =>
                 (a.values.deaths - b.values.deaths)
             ).reverse();
         }
-        else if (options == "recovered") {
+        else if (options === "recovered") {
             sortedData = [...this.state.cleanedData].sort((a, b) =>
                 (a.values.recovered - b.values.recovered)
             ).reverse();

@@ -39,6 +39,10 @@ class App extends Component {
       return <LoaderHome />;
     }
 
+    console.log = () => {
+
+    }
+
     return (
 
       <div className="App">
@@ -47,7 +51,7 @@ class App extends Component {
             <Error /> :
             <div>
               <div className="Mainheader">
-                <img className="logo" src={Logo} />
+                <img className="logo" src={Logo} alt="Covid-19 Logo" />
                 <h1 className="corona">CORONAVIRUS (COVID-19)</h1>
               </div>
               <Switch>
