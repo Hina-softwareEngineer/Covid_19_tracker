@@ -1,7 +1,7 @@
 
 ## 🌍🌍 COVID 19 TRACKER ✨ ⚡️
 
-### ⚡️ [DEMO](HTTPS)
+### ⚡️ [DEMO](https://covid19-tracker2002.netlify.app/)
 
 ### ⚡️ Screenshots
 
@@ -27,10 +27,12 @@
 
 ## ⚡️ Made By
 
-👩‍💻 HINA KHADIM
+👩‍💻 HINA KHADIM 🇵🇰 🇵🇰 
 
 - Github : [@Hina-softwareEngineer](https://github.com/Hina-softwareEngineer)
 - LinkedIn : [@HinaKhadim](https://www.linkedin.com/in/hina-khadim-632845178/)
 - Twitter [@hinakhadim_2002](https://twitter.com/hinaKhadim_2002)
 
 ### ⚡️ Give a Star ⭐️ 🌟 ⭐️ 🌟 if you liked it.
+
+> If you want to contribute, feel free to make a Pull Request☘️ ☘️ .
