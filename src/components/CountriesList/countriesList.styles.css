@@ -49,7 +49,7 @@ select{
 
 
 .countriesList{
-    margin: 0;
+    margin-left: 10px;
     width: 550px;
     background-color: #526974;
     border-radius: 25px;
@@ -142,7 +142,7 @@ h3{
 
     .countriesList{
         margin: 5px;
-        width: 280px;
+        width: 100%;
         background-color: #526974;
         padding: 5px;
         flex-grow: 1;
@@ -156,7 +156,7 @@ h3{
         margin: 5px;
     }
     .countryData{
-        flex-direction: column;
+
         padding: 10px 0;
         text-align: left;
         padding-bottom: 8px;

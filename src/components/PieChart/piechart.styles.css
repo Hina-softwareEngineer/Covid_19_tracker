@@ -10,7 +10,6 @@
     color : white;
     text-align: center; 
     letter-spacing: 2px;
-    margin-right: 20px;
 }
   
 .piechart > h1{
@@ -20,8 +19,7 @@
 
 @media screen and (max-width: 600px){
     .piechart{
-        width: 290px;
-        margin: 5px;
+        width: 100%;
         padding: 0px;
     }
     #chartdiv1{

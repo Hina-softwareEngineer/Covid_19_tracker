@@ -1,6 +1,6 @@
-let CACHE_NAME = 'covid19';
+let CACHE_NAME = 'covid-19';
 let urlsToCache = [
-    '/',
+    '/index.html',
     '/country/:countryId'
 
 ];
@@ -34,7 +34,7 @@ self.addEventListener('fetch', event => {
 
 // Update a service worker
 self.addEventListener('activate', event => {
-    let cacheWhitelist = ['covid19'];
+    let cacheWhitelist = ['covid-19'];
     event.waitUntil(
         caches.keys().then(cacheNames => {
             return Promise.all(

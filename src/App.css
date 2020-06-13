@@ -85,14 +85,41 @@
   .boxes{
     flex-direction: column;
     padding: 5px;
+    align-items: center;
   }
 
   .map{ 
     margin: 5px;
+    margin-bottom: 20px;
   }
   .container{
     margin: 5px;
+    align-items: center;
     flex-direction: column;
   }
   
+}
+
+@media screen and (max-width: 1200px){
+  .box{
+    width: 250px !important;
+  }
+}
+
+@media screen and (max-width: 900px){
+  .boxes{
+    flex-direction: column;
+    padding: 5px;
+    align-items: center;
+  }
+}
+
+.countryNametop{
+  width: 100%;
+  text-align: center;
+  color: white;
+  font-size: 3.5rem;
+  margin: 5px;
+  font-family: 'Open Sans';
+  letter-spacing: 1.7px;
 }

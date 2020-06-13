@@ -1,0 +1,13 @@
+
+.footer{
+    padding: 10px 50px;
+    color: white;
+    font-size: 1.3rem;
+}
+
+.footer > p > a{
+    color: #06ffea;
+    text-shadow: 2px 2px 4px #01579B;
+    text-decoration: none;
+
+}

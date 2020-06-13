@@ -19,7 +19,7 @@ class Country extends Component {
 
         return (
             <div>
-
+                <h1 className="countryNametop">{countryData[0].country}</h1>
                 <Statistics stats={{
                     confirmed: countryData[0].values.confirmed,
                     deaths: countryData[0].values.deaths,

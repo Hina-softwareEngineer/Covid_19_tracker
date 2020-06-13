@@ -9,8 +9,8 @@ import Home from './pages/Home/home.component';
 import Logo from './Images/corona.png';
 import Error from './components/ErrorPage/error.component';
 import Chatbot from './components/Chatbot/chatbot.component';
-
-
+import Footer from './components/Footer/footer.component';
+import GithubCorner from 'react-github-corner';
 
 class App extends Component {
 
@@ -46,11 +46,13 @@ class App extends Component {
     return (
 
       <div className="App">
+
         {
           this.props.errorMessage ?
             <Error /> :
             <div>
               <div className="Mainheader">
+
                 <img className="logo" src={Logo} alt="Covid-19 Logo" />
                 <h1 className="corona">CORONAVIRUS (COVID-19)</h1>
               </div>
@@ -63,7 +65,8 @@ class App extends Component {
               <Chatbot eventHandler={this.clickEventHandler} />
             </div>
         }
-
+        <Footer />
+        <GithubCorner href="https://github.com/Hina-softwareEngineer/Covid_19_tracker" />
       </div>
 
     );
