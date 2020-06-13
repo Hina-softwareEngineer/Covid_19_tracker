@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather&family=Open+Sans&family=Playfair+Display&display=swap');
+
 .App{
   margin: 0;
 }
@@ -8,7 +10,7 @@
   padding: 10px 70px;
 }
 
-.map{
+.map{ 
   border : 2px solid #455a64;
   border-radius: 25px;
   overflow: hidden;
@@ -69,4 +71,28 @@
   margin-left: 40px;
   color: #ffffff;
   font-size: 2.2rem;
+}
+
+@media screen and (max-width: 600px){
+  .Mainheader{
+    flex-direction: column;
+  }
+  .corona{
+    margin-left: 0px;
+    text-align: center;
+  }
+  .boxes{
+    flex-direction: column;
+    padding: 5px;
+  }
+
+  .map{ 
+    margin: 5px;
+  }
+  .container{
+    margin: 5px;
+    flex-direction: column;
+    
+  }
+  
 }

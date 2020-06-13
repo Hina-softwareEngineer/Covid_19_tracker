@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Merriweather&family=Open+Sans&family=Playfair+Display&display=swap');
+
 
 .header{
     display: inline-flex;
@@ -8,11 +8,22 @@
     letter-spacing: 2px;
 }
 
-.header > h1{
+.header > h1{ 
     color : white;
     text-align: center; 
     padding: 0px 20px; 
     text-shadow: 2px 2px 4px #000000;
+}
+@media screen and (max-width: 600px){
+    .header{
+        flex-direction: column;
+        justify-content: center;
+    }
+    #chartdiv{
+        padding: 5px !important;
+       height: 300px !important;
+    }
+
 }
 
 .buttons{

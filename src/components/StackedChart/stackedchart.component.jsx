@@ -31,7 +31,7 @@ class StackedChart extends React.Component {
 
 
 
-        var chart = am4core.create("chartdiv", am4charts.XYChart);
+        var chart = am4core.create("chartdiv2", am4charts.XYChart);
         chart.data = chart_data;
 
 
@@ -121,7 +121,7 @@ class StackedChart extends React.Component {
                 <div className="header">
                     <h1>{this.props.country[0].country} Covid-19 History</h1>
                 </div>
-                <div id="chartdiv"
+                <div id="chartdiv2"
                     style={{ height: "500px" }}>
 
                 </div>

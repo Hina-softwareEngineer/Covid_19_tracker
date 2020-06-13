@@ -16,3 +16,14 @@
     text-shadow: 2px 2px 4px #000000;
     font-size: 1.8rem;
 }
+
+@media screen and (max-width: 600px){
+    .piechart{
+        width: 290px;
+        margin: 5px;
+        padding: 0px;
+    }
+    #chartdiv1{
+        height: 300px !important;
+    }
+}

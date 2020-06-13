@@ -1,6 +1,7 @@
 let CACHE_NAME = 'covid19';
 let urlsToCache = [
     '/',
+    '/country/:countryId'
 
 ];
 

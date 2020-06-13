@@ -14,6 +14,21 @@
     margin: 10px;   
 }
 
+@media screen and (max-width: 600px){
+    .box{
+        width: 260px;
+        margin: 10px 10px;
+    }
+    .box > h1{
+        text-align: center;
+        padding: 5px 15px;
+    }
+    .line{
+        width: 260px !important;
+        margin: 0px !important;
+    }
+}
+
 .box > h3{
     padding-left: 20px;
     text-shadow: none;
