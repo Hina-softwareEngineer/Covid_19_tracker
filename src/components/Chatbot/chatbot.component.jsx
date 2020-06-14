@@ -2,31 +2,29 @@ import React from "react";
 import ChatBot from "react-simple-chatbot";
 import { connect } from 'react-redux';
 
-const Result = (props) => {
-    const { steps, country } = props;
+const Result = ({ steps, country }) => {
     const name = steps.countryName.value;
-    let countryData = country.filter(country => {
-        return country.country.toLowerCase() === name.toLowerCase();
-    })
+    let countryData = country.filter(country => (
+        country.country.toLowerCase() === name.toLowerCase()
+    ))
 
     if (countryData.length > 0) {
-
+        const { confirmed, deaths, recovered } = countryData[0].values
         return (
-            <div>
+            <>
                 <h3>{countryData[0].country}</h3>
-                <p>Confirmed Cases : {countryData[0].values.confirmed}</p>
-                <p>Death Cases : {countryData[0].values.deaths}</p>
-                <p>Recovered Cases : {countryData[0].values.recovered}</p>
-            </div>
+                <p>Confirmed Cases : {confirmed}</p>
+                <p>Death Cases : {deaths}</p>
+                <p>Recovered Cases : {recovered}</p>
+            </>
         );
     }
     else {
-        return (<div>Not Found.</div>);
+        return (<>Not Found.</>);
     }
 }
 
 const CustomChatbot = ({ cleanedData }) => {
-
 
     const config = {
         width: "300px",

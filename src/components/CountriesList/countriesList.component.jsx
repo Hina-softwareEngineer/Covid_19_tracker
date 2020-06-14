@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import ListBox from '../ListBox/listbox.component';
 
 class CountriesList extends Component {
-
     state = {
         cleanedData: this.props.cleanedData,
         search: "",
@@ -94,7 +93,6 @@ class CountriesList extends Component {
 
 const mapStateToProps = state => ({
     cleanedData: state.country.cleanedData,
-
 });
 
 

@@ -7,7 +7,6 @@ class ChartPie extends React.Component {
     GatheringData() {
         let toptenCountries = this.props.data.locations;
 
-
         let cleaningData = {};
         // Removing countries having Provinces and adding total cases of those countries
         for (var i = 0; i < toptenCountries.length; i++) {
@@ -44,7 +43,6 @@ class ChartPie extends React.Component {
 
     render() {
         return (
-
             <PieChart chart={this.GatheringData()} heading={"Most Affected Countries"} />
         )
     }
@@ -52,9 +50,6 @@ class ChartPie extends React.Component {
 
 const mapStateToProps = state => ({
     data: state.country.data.confirmed,
-
 });
-
-
 
 export default connect(mapStateToProps, null)(ChartPie);

@@ -3,17 +3,11 @@ import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
 import am4themes_animated from "@amcharts/amcharts4/themes/animated";
 
-
-
 am4core.useTheme(am4themes_animated);
 
 class StackedChart extends React.Component {
 
-
-
     componentDidMount() {
-
-
         let country = this.props.country;
         let histories = country[0].values.confirmedHistory;
         let histories2 = country[0].values.deathsHistory;
@@ -21,19 +15,14 @@ class StackedChart extends React.Component {
 
         let keys = Object.keys(histories);
 
-
         let chart_data = [];
 
         keys.forEach(key => {
             chart_data.push({ date: new Date(key), value: histories[key], value2: histories2[key], value3: histories3[key] });
         });
 
-
-
-
         var chart = am4core.create("chartdiv2", am4charts.XYChart);
         chart.data = chart_data;
-
 
         chart.colors.list = [
             am4core.color("#03a9f4"),
@@ -67,8 +56,6 @@ class StackedChart extends React.Component {
         fillModifier.brightnesses = [-0.2, 1, -0.2];
         fillModifier.offsets = [0, 0.5, 1];
 
-
-
         // Create series
         function createSeries(field, name) {
 
@@ -78,7 +65,6 @@ class StackedChart extends React.Component {
             series.dataFields.valueY = field;
             series.dataFields.dateX = "date";
             series.sequencedInterpolation = true;
-
 
             series.columns.template.fillModifier = fillModifier;
             series.alignLabels = true;
@@ -103,18 +89,13 @@ class StackedChart extends React.Component {
         createSeries("value2", "Deaths");
         createSeries("value3", "Recovered");
 
-
-
         // Legend
         chart.scrollbarX = new am4core.Scrollbar();
         chart.legend = new am4charts.Legend();
         chart.legend.labels.template.fill = am4core.color("lightgrey");
-
     }
 
     render() {
-
-
         return (
             <div className="map">
 
@@ -123,7 +104,6 @@ class StackedChart extends React.Component {
                 </div>
                 <div id="chartdiv2"
                     style={{ height: "500px" }}>
-
                 </div>
             </div>
         );

@@ -1,20 +1,18 @@
 import React, { Component } from 'react';
-import './global-chart.styles.css';
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4maps from "@amcharts/amcharts4/maps";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import am4geodata_worldLow from "@amcharts/amcharts4-geodata/worldLow";
 import am4themes_animated from "@amcharts/amcharts4/themes/animated";
+
 import Loader from 'react-loader-spinner';
-import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import './global-chart.styles.css';
 
 
 // Themes begin
 am4core.useTheme(am4themes_animated);
 
-
-
 class GlobalChart extends Component {
-
     state = {
         count: 1,
     }
@@ -108,11 +106,6 @@ class GlobalChart extends Component {
         }, 5000);
     }
 
-
-
-
-
-
     render() {
 
         if (this.state.count === 2) {
@@ -127,13 +120,11 @@ class GlobalChart extends Component {
                 width={100}
                 timeout={0} //3 secs 
             />
-            </div>
-                ;
+            </div>;
         }
 
         return (
             <div id="chartdiv"></div>
-
         );
     }
 }

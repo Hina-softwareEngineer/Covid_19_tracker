@@ -1,45 +1,32 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
+
+import CountriesList from '../../components/CountriesList';
+import ToptenCountries from '../../components/TopTenChart/toptenchart.component';
 import Statistics from '../../components/statistics/statistics.component'
 import WorldMap from "../../components/worldMap/worldmap.component";
-import CountriesList from '../../components/CountriesList/countriesList.component';
-import ToptenCountries from '../../components/TopTenChart/toptenchart.component';
 
 
-class Home extends Component {
-
-    render() {
-
-        let { data } = this.props;
-
-
-        return (
-
-            <div>
-                <Statistics stats={{
-                    confirmed: data.confirmed.latest,
-                    deaths: data.deaths.latest,
-                    recovered: data.recovered.latest,
-                    last_updatedConfirmed: data.confirmed.last_updated,
-                    last_updatedDeaths: data.deaths.last_updated,
-                    last_updatedRecovered: data.recovered.last_updated
-                }} />
-
-
-                <WorldMap />
-
-
-                <div className="container">
-                    <ToptenCountries />
-                    <CountriesList />
-                </div>
-            </div>);
-    }
-}
+const Home = ({ data }) => (
+    <>
+        <Statistics stats={{
+            confirmed: data.confirmed.latest,
+            deaths: data.deaths.latest,
+            recovered: data.recovered.latest,
+            last_updatedConfirmed: data.confirmed.last_updated,
+            last_updatedDeaths: data.deaths.last_updated,
+            last_updatedRecovered: data.recovered.last_updated
+        }} />
+        <WorldMap />
+        <div className="container">
+            <ToptenCountries />
+            <CountriesList />
+        </div>
+    </>
+);
 
 const mapStateToProps = state => ({
     data: state.country.data,
-
 });
 
 

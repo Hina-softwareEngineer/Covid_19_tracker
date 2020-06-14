@@ -5,7 +5,6 @@ const ListBox = ({ countryData, match, history }) => {
     let { country, index } = countryData;
 
     return (
-
         <div key={index} id="country" className="countryData">
 
             <div className="names">
@@ -20,9 +19,7 @@ const ListBox = ({ countryData, match, history }) => {
             <div className="codes">
                 <h6>{country.values.country_code}</h6>
                 <h6>{country.values.recovered.toLocaleString(navigator.language, { minimumFractionDigits: 0 })} Recovered</h6>
-
             </div>
-
         </div>
     );
 };
