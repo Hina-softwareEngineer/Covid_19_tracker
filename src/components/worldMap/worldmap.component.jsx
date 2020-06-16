@@ -12,15 +12,11 @@ class WorldMap extends Component {
         border: "#000051",
     }
 
-
     componentDidMount() {
         this.props.confirmedData(this.props.worldmap);
     }
 
-
     render() {
-
-
         return (
             <div className="map">
 
