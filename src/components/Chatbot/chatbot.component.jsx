@@ -11,12 +11,12 @@ const Result = ({ steps, country }) => {
     if (countryData.length > 0) {
         const { confirmed, deaths, recovered } = countryData[0].values
         return (
-            <>
+            <div>
                 <h3>{countryData[0].country}</h3>
                 <p>Confirmed Cases : {confirmed}</p>
                 <p>Death Cases : {deaths}</p>
                 <p>Recovered Cases : {recovered}</p>
-            </>
+            </div>
         );
     }
     else {
